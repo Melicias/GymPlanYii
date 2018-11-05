@@ -9,7 +9,7 @@ use Yii;
  *
  * @property int $id_exercicio
  * @property string $foto
- * @property string $nome_Exercicio
+ * @property string $nome
  * @property string $descrição
  * @property int $repeticoes
  * @property int $tempo
@@ -32,10 +32,10 @@ class Exercicio extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_exercicio', 'foto', 'nome_Exercicio', 'descrição'], 'required'],
+            [['id_exercicio', 'foto', 'nome', 'descrição'], 'required'],
             [['id_exercicio', 'repeticoes', 'tempo'], 'integer'],
             [['foto'], 'string', 'max' => 200],
-            [['nome_Exercicio'], 'string', 'max' => 25],
+            [['nome'], 'string', 'max' => 25],
             [['descrição'], 'string', 'max' => 250],
             [['id_exercicio'], 'unique'],
         ];
@@ -49,8 +49,8 @@ class Exercicio extends \yii\db\ActiveRecord
         return [
             'id_exercicio' => 'Id Exercicio',
             'foto' => 'Foto',
-            'nome_Exercicio' => 'Nome  Exercicio',
-            'descrição' => 'Descri��o',
+            'nome' => 'Nome',
+            'descricao' => 'Descricao',
             'repeticoes' => 'Repeticoes',
             'tempo' => 'Tempo',
         ];
@@ -62,5 +62,12 @@ class Exercicio extends \yii\db\ActiveRecord
     public function getTreinoExercicios()
     {
         return $this->hasMany(TreinoExercicio::className(), ['id_exercicio' => 'id_exercicio']);
+    }
+
+    public function relations()
+    {
+        return array(
+            'treinos' => array(self::MANY_MANY, 'treino', 'Treino_Exercicio(id_exercicio, id_treino)'),
+        );
     }
 }

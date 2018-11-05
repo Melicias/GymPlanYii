@@ -5,9 +5,11 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "{{%treino}}".
+ * This is the model class for table "treino".
  *
  * @property int $id_treino
+ * @property string $nome
+ * @property string $descricao
  * @property int $id_categoria
  * @property int $id_dificuldade
  * @property int $repeticoes
@@ -23,7 +25,7 @@ class Treino extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%treino}}';
+        return 'treino';
     }
 
     /**
@@ -32,9 +34,10 @@ class Treino extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_treino', 'id_categoria', 'id_dificuldade', 'repeticoes'], 'required'],
-            [['id_treino', 'id_categoria', 'id_dificuldade', 'repeticoes'], 'integer'],
-            [['id_treino'], 'unique'],
+            [['nome', 'descricao', 'id_categoria', 'id_dificuldade', 'repeticoes'], 'required'],
+            [['id_categoria', 'id_dificuldade', 'repeticoes'], 'integer'],
+            [['nome'], 'string', 'max' => 50],
+            [['descricao'], 'string', 'max' => 300],
             [['id_categoria'], 'exist', 'skipOnError' => true, 'targetClass' => Categoria::className(), 'targetAttribute' => ['id_categoria' => 'id_categoria']],
             [['id_dificuldade'], 'exist', 'skipOnError' => true, 'targetClass' => Dificuldade::className(), 'targetAttribute' => ['id_dificuldade' => 'id_dificuldade']],
         ];
@@ -47,8 +50,10 @@ class Treino extends \yii\db\ActiveRecord
     {
         return [
             'id_treino' => 'Id Treino',
-            'id_categoria' => 'Id Categoria',
-            'id_dificuldade' => 'Id Dificuldade',
+            'nome' => 'Nome',
+            'descricao' => 'Descricao',
+            'id_categoria' => 'Categoria',
+            'id_dificuldade' => 'Dificuldade',
             'repeticoes' => 'Repeticoes',
         ];
     }
@@ -76,4 +81,30 @@ class Treino extends \yii\db\ActiveRecord
     {
         return $this->hasOne(TreinoExercicio::className(), ['id_treino' => 'id_treino']);
     }
+
+    public function relations()
+    {
+        return array(
+            'exercicios' => array(self::MANY_MANY, 'exercicio', 'Treino_Exercicio(id_treino, id_exercicio)'),
+        );
+    }
+
+    /**
+     * @return String
+     */
+    public function getCategoriaName($id)
+    {
+        $cat = Categoria::find()->where(['id_categoria' => $id])->one();
+        return $cat->nome;
+    }
+
+    /**
+     * @return String
+     */
+    public function getDificuldadeDificuldade($id)
+    {
+        $dif = Dificuldade::find()->where(['id_dificuldade' => $id])->one();
+        return $dif->dificuldade;
+    }
+
 }

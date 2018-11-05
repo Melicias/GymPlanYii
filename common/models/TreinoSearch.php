@@ -8,7 +8,7 @@ use yii\data\ActiveDataProvider;
 use common\models\Treino;
 
 /**
- * TreinoSearch represents the model behind the search form of `backend\models\Treino`.
+ * TreinoSearch represents the model behind the search form of `common\models\Treino`.
  */
 class TreinoSearch extends Treino
 {
@@ -19,6 +19,7 @@ class TreinoSearch extends Treino
     {
         return [
             [['id_treino', 'id_categoria', 'id_dificuldade', 'repeticoes'], 'integer'],
+            [['nome', 'descricao'], 'safe'],
         ];
     }
 
@@ -63,6 +64,9 @@ class TreinoSearch extends Treino
             'id_dificuldade' => $this->id_dificuldade,
             'repeticoes' => $this->repeticoes,
         ]);
+
+        $query->andFilterWhere(['like', 'nome', $this->nome])
+            ->andFilterWhere(['like', 'descricao', $this->descricao]);
 
         return $dataProvider;
     }

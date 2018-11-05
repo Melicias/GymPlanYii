@@ -5,7 +5,7 @@ namespace common\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\Categoria;
+use common\models\Categoria;
 
 /**
  * CategoriaSearch represents the model behind the search form of `backend\models\Categoria`.
@@ -19,7 +19,7 @@ class CategoriaSearch extends Categoria
     {
         return [
             [['id_categoria'], 'integer'],
-            [['nomeCategoria'], 'safe'],
+            [['nome'], 'safe'],
         ];
     }
 
@@ -62,7 +62,7 @@ class CategoriaSearch extends Categoria
             'id_categoria' => $this->id_categoria,
         ]);
 
-        $query->andFilterWhere(['like', 'nomeCategoria', $this->nomeCategoria]);
+        $query->andFilterWhere(['like', 'nome', $this->nome]);
 
         return $dataProvider;
     }

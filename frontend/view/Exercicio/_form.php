@@ -16,7 +16,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'foto')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'nome_Exercicio')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'nome')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'descrição')->textInput(['maxlength' => true]) ?>
 

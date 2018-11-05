@@ -28,9 +28,8 @@ class Dificuldade extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_dificuldade', 'dificuldade'], 'required'],
-            [['id_dificuldade', 'dificuldade'], 'integer'],
-            [['id_dificuldade'], 'unique'],
+            [['dificuldade'], 'required'],
+            [['dificuldade'], 'integer'],
         ];
     }
 
@@ -40,7 +39,7 @@ class Dificuldade extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_dificuldade' => 'Id Dificuldade',
+            'id_dificuldade' => 'Dificuldade',
             'dificuldade' => 'Dificuldade',
         ];
     }
