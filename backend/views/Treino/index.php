@@ -1,7 +1,10 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 use yii\grid\GridView;
+use common\models\Categoria;
+use common\models\Dificuldade;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\TreinoSearch */
@@ -9,6 +12,7 @@ use yii\grid\GridView;
 
 $this->title = 'Treinos';
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="treino-index">
 
@@ -23,13 +27,19 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            //['class' => 'yii\grid\SerialColumn'],
 
             'id_treino',
             'nome',
             'descricao',
-            'id_categoria',
-            'id_dificuldade',
+            [
+                'attribute'=>'id_categoria',
+                'filter'=>ArrayHelper::map(Categoria::find()->asArray()->all(), 'id_categoria', 'nome'),
+            ],
+            [
+                'attribute'=>'id_dificuldade',
+                'filter'=>ArrayHelper::map(Dificuldade::find()->asArray()->all(), 'id_dificuldade', 'dificuldade'),
+            ],
             //'repeticoes',
 
             ['class' => 'yii\grid\ActionColumn'],

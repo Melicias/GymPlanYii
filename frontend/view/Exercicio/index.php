@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'id_exercicio',
             'foto',
             'nome',
-            'descrição',
+            'descricao',
             'repeticoes',
             //'tempo',
 

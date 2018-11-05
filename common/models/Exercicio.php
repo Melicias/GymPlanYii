@@ -10,7 +10,7 @@ use Yii;
  * @property int $id_exercicio
  * @property string $foto
  * @property string $nome
- * @property string $descrição
+ * @property string $descricao
  * @property int $repeticoes
  * @property int $tempo
  *
@@ -32,13 +32,25 @@ class Exercicio extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_exercicio', 'foto', 'nome', 'descrição'], 'required'],
-            [['id_exercicio', 'repeticoes', 'tempo'], 'integer'],
+            [['foto', 'nome', 'descricao'], 'required'],
+            //[['repeticoes', 'tempo'], 'my_required'],
+            [['repeticoes', 'tempo'], 'integer'],
             [['foto'], 'string', 'max' => 200],
             [['nome'], 'string', 'max' => 25],
-            [['descrição'], 'string', 'max' => 250],
-            [['id_exercicio'], 'unique'],
+            [['descricao'], 'string', 'max' => 250],
         ];
+    }
+
+    public function my_required($attribute_name, $params)
+    {
+        if (empty($this->repeticoes)
+            && empty($this->tempo)
+        ) {
+            $this->addError($attribute_name, Yii::t('Exercicio', 'As repeticoes ou o tempo deve ter algo!'));
+            return false;
+        }
+
+        return true;
     }
 
     /**
@@ -47,12 +59,12 @@ class Exercicio extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_exercicio' => 'Id Exercicio',
-            'foto' => 'Foto',
+            'id_exercicio' => 'ID Exercicio',
+            'foto' => 'Foto (url)',
             'nome' => 'Nome',
             'descricao' => 'Descricao',
             'repeticoes' => 'Repeticoes',
-            'tempo' => 'Tempo',
+            'tempo' => 'Tempo (em segundos)',
         ];
     }
 

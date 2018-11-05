@@ -12,17 +12,15 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'id_exercicio')->textInput() ?>
-
-    <?= $form->field($model, 'foto')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'nome')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'descrição')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'descricao')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'repeticoes')->textInput() ?>
 
     <?= $form->field($model, 'tempo')->textInput() ?>
+
+    <?= $form->field($model, 'foto')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

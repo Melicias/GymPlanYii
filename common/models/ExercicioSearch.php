@@ -19,7 +19,7 @@ class ExercicioSearch extends Exercicio
     {
         return [
             [['id_exercicio', 'repeticoes', 'tempo'], 'integer'],
-            [['foto', 'nome', 'descrição'], 'safe'],
+            [['foto', 'nome', 'descricao'], 'safe'],
         ];
     }
 
@@ -66,7 +66,7 @@ class ExercicioSearch extends Exercicio
 
         $query->andFilterWhere(['like', 'foto', $this->foto])
             ->andFilterWhere(['like', 'nome', $this->nome])
-            ->andFilterWhere(['like', 'descrição', $this->descrição]);
+            ->andFilterWhere(['like', 'descricao', $this->descricao]);
 
         return $dataProvider;
     }
