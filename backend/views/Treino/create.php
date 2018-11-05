@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Treino */
 
-$this->title = 'Create Treino';
+$this->title = 'Criar Treino';
 $this->params['breadcrumbs'][] = ['label' => 'Treinos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
