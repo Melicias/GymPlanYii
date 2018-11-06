@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'id_zona',
             [
                 'label' => 'id_zona',
-                'value' => $model->getCategoriaName($model->id_zona),
+                'value' => $model->getZonaName($model->id_zona),
             ],
         ],
     ]) ?>
