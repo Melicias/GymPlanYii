@@ -39,7 +39,7 @@ class Dificuldade extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_dificuldade' => 'Dificuldade',
+            'id_dificuldade' => 'Id dificuldade',
             'dificuldade' => 'Dificuldade',
         ];
     }
@@ -51,4 +51,5 @@ class Dificuldade extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Treino::className(), ['id_dificuldade' => 'id_dificuldade']);
     }
+
 }

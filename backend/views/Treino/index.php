@@ -5,6 +5,7 @@ use yii\helpers\ArrayHelper;
 use yii\grid\GridView;
 use common\models\Categoria;
 use common\models\Dificuldade;
+use common\models\Treino;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\TreinoSearch */
@@ -35,10 +36,12 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute'=>'id_categoria',
                 'filter'=>ArrayHelper::map(Categoria::find()->asArray()->all(), 'id_categoria', 'nome'),
+                'value' =>function($model){  return Treino::getCategoriaName($model->id_categoria);},
             ],
             [
                 'attribute'=>'id_dificuldade',
                 'filter'=>ArrayHelper::map(Dificuldade::find()->asArray()->all(), 'id_dificuldade', 'dificuldade'),
+                'value' =>function($model){  return Treino::getDificuldadeDificuldade($model->id_dificuldade);},
             ],
             //'repeticoes',
 

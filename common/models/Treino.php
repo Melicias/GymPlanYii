@@ -92,7 +92,7 @@ class Treino extends \yii\db\ActiveRecord
     /**
      * @return String
      */
-    public function getCategoriaName($id)
+    public static function getCategoriaName($id)
     {
         $cat = Categoria::find()->where(['id_categoria' => $id])->one();
         return $cat->nome;
@@ -101,7 +101,7 @@ class Treino extends \yii\db\ActiveRecord
     /**
      * @return String
      */
-    public function getDificuldadeDificuldade($id)
+    public static function getDificuldadeDificuldade($id)
     {
         $dif = Dificuldade::find()->where(['id_dificuldade' => $id])->one();
         return $dif->dificuldade;
