@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'label' => 'Dificuldade',
-                'value' => $model->getDificuldadeDificuldade($model->id_categoria),
+                'value' => $model->getDificuldadeDificuldade($model->id_dificuldade),
             ],
             'repeticoes',
         ],
