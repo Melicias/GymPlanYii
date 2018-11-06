@@ -5,12 +5,12 @@ namespace common\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Exercicio;
+use common\models\ZonaExercicio;
 
 /**
- * ExercicioSearch represents the model behind the search form of `common\models\Exercicio`.
+ * ZonaExercicioSearch represents the model behind the search form of `common\models\ZonaExercicio`.
  */
-class ExercicioSearch extends Exercicio
+class ZonaExercicioSearch extends ZonaExercicio
 {
     /**
      * {@inheritdoc}
@@ -18,8 +18,8 @@ class ExercicioSearch extends Exercicio
     public function rules()
     {
         return [
-            [['id_exercicio', 'repeticoes', 'tempo', 'id_zona'], 'integer'],
-            [['foto', 'nome', 'descricao'], 'safe'],
+            [['id_zona'], 'integer'],
+            [['nome'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class ExercicioSearch extends Exercicio
      */
     public function search($params)
     {
-        $query = Exercicio::find();
+        $query = ZonaExercicio::find();
 
         // add conditions that should always apply here
 
@@ -59,15 +59,10 @@ class ExercicioSearch extends Exercicio
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id_exercicio' => $this->id_exercicio,
-            'repeticoes' => $this->repeticoes,
-            'tempo' => $this->tempo,
             'id_zona' => $this->id_zona,
         ]);
 
-        $query->andFilterWhere(['like', 'foto', $this->foto])
-            ->andFilterWhere(['like', 'nome', $this->nome])
-            ->andFilterWhere(['like', 'descricao', $this->descricao]);
+        $query->andFilterWhere(['like', 'nome', $this->nome]);
 
         return $dataProvider;
     }

@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\Exercicio */
+/* @var $model common\models\Exercicio */
 
 $this->title = $model->id_exercicio;
 $this->params['breadcrumbs'][] = ['label' => 'Exercicios', 'url' => ['index']];
@@ -34,6 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'descricao',
             'repeticoes',
             'tempo',
+            'id_zona',
         ],
     ]) ?>
 

@@ -5,7 +5,7 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "{{%exercicio}}".
+ * This is the model class for table "exercicio".
  *
  * @property int $id_exercicio
  * @property string $foto
@@ -13,7 +13,9 @@ use Yii;
  * @property string $descricao
  * @property int $repeticoes
  * @property int $tempo
+ * @property int $id_zona
  *
+ * @property ZonaExercicio $zona
  * @property TreinoExercicio[] $treinoExercicios
  */
 class Exercicio extends \yii\db\ActiveRecord
@@ -23,7 +25,7 @@ class Exercicio extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%exercicio}}';
+        return 'exercicio';
     }
 
     /**
@@ -33,24 +35,17 @@ class Exercicio extends \yii\db\ActiveRecord
     {
         return [
             [['foto', 'nome', 'descricao'], 'required'],
-            //[['repeticoes', 'tempo'], 'my_required'],
-            [['repeticoes', 'tempo'], 'integer'],
+            ['repeticoes', 'required', 'when' => function($model) {
+                return $model->tempo == '';
+            },'whenClient' => "function (attribute, value) {
+                return $('#exercicio-tempo').val() == '';
+            }"],
+            [['repeticoes', 'tempo', 'id_zona'], 'integer'],
             [['foto'], 'string', 'max' => 200],
             [['nome'], 'string', 'max' => 25],
             [['descricao'], 'string', 'max' => 250],
+            [['id_zona'], 'exist', 'skipOnError' => true, 'targetClass' => ZonaExercicio::className(), 'targetAttribute' => ['id_zona' => 'id_zona']],
         ];
-    }
-
-    public function my_required($attribute_name, $params)
-    {
-        if (empty($this->repeticoes)
-            && empty($this->tempo)
-        ) {
-            $this->addError($attribute_name, Yii::t('Exercicio', 'As repeticoes ou o tempo deve ter algo!'));
-            return false;
-        }
-
-        return true;
     }
 
     /**
@@ -65,7 +60,16 @@ class Exercicio extends \yii\db\ActiveRecord
             'descricao' => 'Descricao',
             'repeticoes' => 'Repeticoes',
             'tempo' => 'Tempo (em segundos)',
+            'id_zona' => 'Id Zona',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getZona()
+    {
+        return $this->hasOne(ZonaExercicio::className(), ['id_zona' => 'id_zona']);
     }
 
     /**

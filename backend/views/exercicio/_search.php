@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\ExercicioSearch */
+/* @var $model common\models\ExercicioSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -26,6 +26,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'repeticoes') ?>
 
     <?php // echo $form->field($model, 'tempo') ?>
+
+    <?php // echo $form->field($model, 'id_zona') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
