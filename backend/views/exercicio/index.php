@@ -1,7 +1,9 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 use yii\grid\GridView;
+use common\models\ZonaExercicio;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\ExercicioSearch */
@@ -26,10 +28,14 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id_exercicio',
-            'foto',
+            //'foto',
             'nome',
             'descricao',
-            'repeticoes',
+            [
+                'attribute'=>'id_zona',
+                'filter'=>ArrayHelper::map(ZonaExercicio::find()->asArray()->all(), 'id_zona', 'nome'),
+            ],
+            //'repeticoes',
             //'tempo',
             //'id_zona',
 

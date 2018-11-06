@@ -1,7 +1,9 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
+use common\models\ZonaExercicio;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Exercicio */
@@ -22,7 +24,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'tempo')->textInput() ?>
 
-    <?= $form->field($model, 'id_zona')->textInput() ?>
+    <?= $form->field($model, 'id_zona')->dropDownList(
+        ArrayHelper::map(ZonaExercicio::find()->asArray()->all(), 'id_zona', 'nome')) ?>
 
     <?= $form->field($model, 'foto')->textInput(['maxlength' => true]) ?>
 

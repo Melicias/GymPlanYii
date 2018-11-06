@@ -35,6 +35,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'repeticoes',
             'tempo',
             'id_zona',
+            [
+                'label' => 'id_zona',
+                'value' => $model->getCategoriaName($model->id_zona),
+            ],
         ],
     ]) ?>
 

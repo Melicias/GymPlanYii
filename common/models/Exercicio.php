@@ -35,6 +35,7 @@ class Exercicio extends \yii\db\ActiveRecord
     {
         return [
             [['foto', 'nome', 'descricao'], 'required'],
+            ['id_zona', 'required', 'message' => 'Se ainda não existir Zonas, adicione algumas zonas'],
             ['repeticoes', 'required', 'when' => function($model) {
                 return $model->tempo == '';
             },'whenClient' => "function (attribute, value) {
@@ -60,7 +61,7 @@ class Exercicio extends \yii\db\ActiveRecord
             'descricao' => 'Descricao',
             'repeticoes' => 'Repeticoes',
             'tempo' => 'Tempo (em segundos)',
-            'id_zona' => 'Id Zona',
+            'id_zona' => 'Zona do exercicio',
         ];
     }
 
@@ -78,6 +79,15 @@ class Exercicio extends \yii\db\ActiveRecord
     public function getTreinoExercicios()
     {
         return $this->hasMany(TreinoExercicio::className(), ['id_exercicio' => 'id_exercicio']);
+    }
+
+    /**
+     * @return String
+     */
+    public function getZonaName($id)
+    {
+        $cat = ZonaExercicio::find()->where(['id_zona' => $id])->one();
+        return $cat->nome;
     }
 
     public function relations()
