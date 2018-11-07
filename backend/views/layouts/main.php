@@ -32,11 +32,20 @@ AppAsset::register($this);
         'brandLabel' => Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
+            'class' => 'navbar-inverse navbar-fixed-top'
+            ,
         ],
     ]);
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],
+        ['label' => 'Zona Exercicio', 'url' => ['/zona-exercicio']],
+        ['label' => 'Exercicio', 'url' => ['/exercicio']],
+        ['label' => 'Dificuldade', 'url' => ['/dificuldade']],
+        ['label' => 'Categoria', 'url' => ['/categoria']],
+        ['label' => 'Treino', 'url' => ['/treino']]
+
+
+
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
