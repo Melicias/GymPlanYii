@@ -6,7 +6,7 @@ use Yii;
 use yii\web\IdentityInterface;
 
 /**
- * This is the model class for table "admin".
+ * This is the model class for table "admin". //password for user melicias1999@gmail.com pass: jayson
  *
  * @property int $id
  * @property string $primeiroNome
