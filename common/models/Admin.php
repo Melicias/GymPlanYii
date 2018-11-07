@@ -6,7 +6,7 @@ use Yii;
 use yii\web\IdentityInterface;
 
 /**
- * This is the model class for table "user".
+ * This is the model class for table "admin".
  *
  * @property int $id
  * @property string $primeiroNome
@@ -23,7 +23,7 @@ use yii\web\IdentityInterface;
  * @property int $updated_at
  * @property string $auth_key
  */
-class User extends \yii\db\ActiveRecord implements IdentityInterface
+class Admin extends \yii\db\ActiveRecord implements IdentityInterface
 {
 
     const STATUS_DELETED = 0;
@@ -34,7 +34,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public static function tableName()
     {
-        return 'user';
+        return 'admin';
     }
 
     /**
@@ -107,7 +107,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Finds user by email
+     * Finds admin by email
      *
      * @param string $email
      * @return static|null
@@ -157,7 +157,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         }
 
         $timestamp = (int) substr($token, strrpos($token, '_') + 1);
-        $expire = Yii::$app->params['user.passwordResetTokenExpire'];
+        $expire = Yii::$app->params['admin.passwordResetTokenExpire'];
         return $timestamp + $expire >= time();
     }
 
