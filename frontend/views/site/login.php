@@ -19,14 +19,26 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-lg-5">
             <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
 
-                <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
 
-                <?= $form->field($model, 'password')->passwordInput() ?>
+            <?= $form->field($model, 'primeiroNome')->textInput(['maxlength' => true]) ?>
 
-                <?= $form->field($model, 'rememberMe')->checkbox() ?>
+            <?= $form->field($model, 'ultimoNome')->textInput(['maxlength' => true]) ?>
 
-                <div style="color:#999;margin:1em 0">
-                    If you forgot your password you can <?= Html::a('reset it', ['site/request-password-reset']) ?>.
+            <?= $form->field($model, 'dataNascimento')->textInput() ?>
+
+            <?= $form->field($model, 'altura')->textInput(['maxlength' => true]) ?>
+
+            <?= $form->field($model, 'peso')->textInput(['maxlength' => true]) ?>
+
+            <?= $form->field($model, 'sexo')->DropDownList(
+                [ '0' => 'Feminino', '1' => 'Masculino', ] )?>
+
+            <?= $form->field($model, 'email') ?>
+
+            <?= $form->field($model, 'password')->passwordInput() ?>
+
+            <div style="color:#999;margin:1em 0">
+                    Não tem uma conta ainda? <?= Html::a('Registe-se', ['site/signup']) ?>.
                 </div>
 
                 <div class="form-group">

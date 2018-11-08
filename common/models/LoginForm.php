@@ -9,6 +9,12 @@ use yii\base\Model;
  */
 class LoginForm extends Model
 {
+    public $primeiroNome;
+    public $ultimoNome;
+    public $dataNascimento;
+    public $altura;
+    public $peso;
+    public $sexo;
     public $email;
     public $password;
     public $rememberMe = true;
@@ -22,13 +28,33 @@ class LoginForm extends Model
     public function rules()
     {
         return [
-            // email and password are both required
-            [['email', 'password'], 'required'],
-            // rememberMe must be a boolean value
-            ['rememberMe', 'boolean'],
-            // password is validated by validatePassword()
-            ['password', 'validatePassword'],
-        ];
+        ['primeiroNome', 'required'],
+        ['primeiroNome', 'string', 'min' => 2, 'max' => 255],
+
+        ['ultimoNome', 'required'],
+        ['ultimoNome', 'string', 'min' => 2, 'max' => 255],
+
+        ['dataNascimento', 'trim'],
+
+        ['altura', 'trim'],
+
+        ['peso', 'trim'],
+        ['peso', 'required'],
+        ['peso', 'string', 'min' => 2, 'max' => 255],
+
+        ['sexo', 'trim'],
+        ['sexo', 'required'],
+        ['sexo', 'boolean'],
+
+        ['email', 'trim'],
+        ['email', 'required'],
+        ['email', 'email'],
+        ['email', 'string', 'max' => 255],
+        ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
+
+        ['password', 'required'],
+        ['password', 'string', 'min' => 5],
+    ];
     }
 
     /**
@@ -40,6 +66,7 @@ class LoginForm extends Model
      */
     public function validatePassword($attribute, $params)
     {
+        var_dump($this);
         if (!$this->hasErrors()) {
             $user = $this->getUser();
             if (!$user || !$user->validatePassword($this->password)) {

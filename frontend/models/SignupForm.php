@@ -1,6 +1,7 @@
 <?php
 namespace frontend\models;
 
+use DateTime;
 use yii\base\Model;
 use common\models\User;
 
@@ -9,7 +10,12 @@ use common\models\User;
  */
 class SignupForm extends Model
 {
-    public $username;
+    public $primeiroNome;
+    public $ultimoNome;
+    public $dataNascimento;
+    public $altura;
+    public $peso;
+    public $sexo;
     public $email;
     public $password;
 
@@ -20,10 +26,21 @@ class SignupForm extends Model
     public function rules()
     {
         return [
-            ['username', 'trim'],
-            ['username', 'required'],
-            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
-            ['username', 'string', 'min' => 2, 'max' => 255],
+            ['primeiroNome', 'required'],
+            ['primeiroNome', 'string', 'min' => 3, 'max' => 255],
+
+            ['ultimoNome', 'required'],
+            ['ultimoNome', 'string', 'min' => 3, 'max' => 255],
+
+            ['dataNascimento', 'required'],
+            ['dataNascimento', 'date' ,'format' => 'php:d-m-Y'],
+
+            ['altura', 'number', 'min' => 1.00, 'max' => 2.50],
+            ['peso', 'required'],
+            ['peso', 'number' , 'min' => 25, 'max' => 300],
+
+            ['sexo', 'trim'],
+            ['sexo', 'number'],
 
             ['email', 'trim'],
             ['email', 'required'],
@@ -32,7 +49,7 @@ class SignupForm extends Model
             ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
 
             ['password', 'required'],
-            ['password', 'string', 'min' => 6],
+            ['password', 'string', 'min' => 5],
         ];
     }
 
@@ -48,7 +65,12 @@ class SignupForm extends Model
         }
         
         $user = new User();
-        $user->username = $this->username;
+        $user->primeiroNome = $this->primeiroNome;
+        $user->ultimoNome = $this->ultimoNome;
+        $user->dataNascimento = date('d-m-Y H:i:s', strtotime($this->dataNascimento)); //DateTime::createFromFormat('d/m/Y', $this->dataNascimento)->getTimestamp();
+        $user->altura = $this->altura;
+        $user->peso = $this->peso;
+        $user->sexo = $this->sexo;
         $user->email = $this->email;
         $user->setPassword($this->password);
         $user->generateAuthKey();

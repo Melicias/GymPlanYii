@@ -42,9 +42,8 @@ AppAsset::register($this);
         ['label' => 'Exercicio', 'url' => ['/exercicio']],
         ['label' => 'Dificuldade', 'url' => ['/dificuldade']],
         ['label' => 'Categoria', 'url' => ['/categoria']],
-        ['label' => 'Treino', 'url' => ['/treino']]
-
-
+        ['label' => 'Treino', 'url' => ['/treino']],
+            ['label' => 'Bloquear Utilizadores', 'url' => ['/user']]
 
     ];
     if (Yii::$app->user->isGuest) {
