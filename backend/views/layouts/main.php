@@ -36,20 +36,18 @@ AppAsset::register($this);
             ,
         ],
     ]);
-    $menuItems = [
-        ['label' => 'Home', 'url' => ['/site']],
-        ['label' => 'Treinos', 'url' => ['/treino']],
-        ['label' => 'Exercicios', 'url' => ['/exercicio']],
-        ['label' => 'Zona Exercicio', 'url' => ['/zona-exercicio']],
-        ['label' => 'Exercicio', 'url' => ['/exercicio']],
-        ['label' => 'Dificuldade', 'url' => ['/dificuldade']],
-        ['label' => 'Categoria', 'url' => ['/categoria']],
-        ['label' => 'Treino', 'url' => ['/treino']],
-        ['label' => 'Bloquear Utilizadores', 'url' => ['/user']]
-    ];
+    $menuItems = [];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
+        $menuItems = [
+            ['label' => 'Home', 'url' => ['/site']],
+            ['label' => 'Treinos', 'url' => ['/treino']],
+            ['label' => 'Exercicios', 'url' => ['/exercicio']],
+            //['label' => 'Zona', 'url' => ['/zona-exercicio']],
+            //['label' => 'Dificuldade', 'url' => ['/dificuldade']],
+            //['label' => 'Categoria', 'url' => ['/categoria']],
+            ['label' => 'Bloquear Utilizadores', 'url' => ['/user']]];
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(

@@ -18,7 +18,7 @@ class UserSearch extends User
     public function rules()
     {
         return [
-            [['id_user', 'sexo', 'status', 'created_at', 'updated_at'], 'integer'],
+            [['id', 'sexo', 'status', 'created_at', 'updated_at'], 'integer'],
             [['primeiroNome', 'ultimoNome', 'dataNascimento', 'email', 'password_hash', 'password_reset_token', 'auth_key'], 'safe'],
             [['altura', 'peso'], 'number'],
         ];
@@ -60,7 +60,7 @@ class UserSearch extends User
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id_user' => $this->id_user,
+            'id' => $this->id,
             'dataNascimento' => $this->dataNascimento,
             'altura' => $this->altura,
             'peso' => $this->peso,

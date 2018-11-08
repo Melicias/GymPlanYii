@@ -22,13 +22,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id_user',
+            'id',
             'primeiroNome',
             'ultimoNome',
             'email',
             [
                 'attribute'=>'status',
-                'filter'=>[0 => 'Bloquear',10 => 'Desbloquear'],
+                'filter'=>[0 => 'Bloqueado',10 => 'Desbloqueado'],
             ],
 
             //'peso',
