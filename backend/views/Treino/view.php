@@ -41,6 +41,15 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'repeticoes',
         ],
-    ]) ?>
+    ]);
+    ?>
+    <?php
+        if($model->exercicios != null){
+            
+        }
+
+    ?>
+
+
 
 </div>

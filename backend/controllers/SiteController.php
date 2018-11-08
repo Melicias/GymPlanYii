@@ -60,8 +60,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        //return $this->render('index');
-        return $this->redirect(['treino/index/']);
+        return $this->render('index');
     }
 
     /**
@@ -77,8 +76,7 @@ class SiteController extends Controller
 
         $model = new AdminLoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            //return $this->goBack();
-            return $this->redirect(['treino/index/']);
+            return $this->goBack();
         } else {
             $model->password = '';
 

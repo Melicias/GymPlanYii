@@ -24,8 +24,16 @@ use common\models\ZonaExercicio;
 
     <?= $form->field($model, 'tempo')->textInput() ?>
 
-    <?= $form->field($model, 'id_zona')->dropDownList(
-        ArrayHelper::map(ZonaExercicio::find()->asArray()->all(), 'id_zona', 'nome')) ?>
+    <div class="row">
+        <div class="col-xs-10">
+            <?= $form->field($model, 'id_zona')->dropDownList(
+                ArrayHelper::map(ZonaExercicio::find()->asArray()->all(), 'id_zona', 'nome')) ?>
+        </div>
+        <div class="col-xs-2">
+            <br>
+            <?= Html::a('Criar Zonas exercicio', ['zona-exercicio/create'], ['class' => 'btn btn-success']) ?>
+        </div>
+    </div>
 
     <?= $form->field($model, 'foto')->textInput(['maxlength' => true]) ?>
 
