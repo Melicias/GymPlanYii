@@ -1,7 +1,6 @@
 <?php
 namespace frontend\models;
 
-use DateTime;
 use yii\base\Model;
 use common\models\User;
 
@@ -33,7 +32,7 @@ class SignupForm extends Model
             ['ultimoNome', 'string', 'min' => 3, 'max' => 255],
 
             ['dataNascimento', 'required'],
-            ['dataNascimento', 'date' ,'format' => 'php:d-m-Y'],
+            ['dataNascimento', 'date' ,'format' => 'php:Y-m-d'],
 
             ['altura', 'number', 'min' => 1.00, 'max' => 2.50],
             ['peso', 'required'],
@@ -67,7 +66,7 @@ class SignupForm extends Model
         $user = new User();
         $user->primeiroNome = $this->primeiroNome;
         $user->ultimoNome = $this->ultimoNome;
-        $user->dataNascimento = date('d-m-Y H:i:s', strtotime($this->dataNascimento)); //DateTime::createFromFormat('d/m/Y', $this->dataNascimento)->getTimestamp();
+        $user->dataNascimento = Date("Y-m-d h:i:s", strtotime($this->dataNascimento)); //DateTime::createFromFormat('d/m/Y', $this->dataNascimento)->getTimestamp();
         $user->altura = $this->altura;
         $user->peso = $this->peso;
         $user->sexo = $this->sexo;
