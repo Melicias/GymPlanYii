@@ -18,9 +18,9 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-lg-5">
             <?php $form = ActiveForm::begin(['id' => 'form-account']); ?>
 
-            <?= $form->field($model, 'altura')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'primeiroNome')->textInput(['maxlength' => true]) ?>
 
-            <?= $form->field($model, 'peso')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'ultimoNome')->textInput(['maxlength' => true]) ?>
 
             <?= $form->field($model, 'email') ?>
 

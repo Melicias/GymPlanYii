@@ -12,8 +12,8 @@ class AccountForm extends Model
 {
 
 
-    public $altura;
-    public $peso;
+    public $primeiroNome;
+    public $ultimoNome;
     public $email;
     public $password;
 
@@ -23,12 +23,11 @@ class AccountForm extends Model
     public function rules()
     {
         return [
-            ['altura', 'number', 'min' => 1.00, 'max' => 2.50],
-            ['peso', 'required'],
-            ['peso', 'number' , 'min' => 25, 'max' => 300],
+            ['primeiroNome', 'required'],
+            ['primeiroNome', 'string', 'min' => 3, 'max' => 255],
 
-            ['sexo', 'trim'],
-            ['sexo', 'number'],
+            ['ultimoNome', 'required'],
+            ['ultimoNome', 'string', 'min' => 3, 'max' => 255],
 
             ['email', 'trim'],
             ['email', 'required'],
