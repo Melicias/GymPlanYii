@@ -28,29 +28,10 @@ class LoginForm extends Model
     public function rules()
     {
         return [
-        ['primeiroNome', 'required'],
-        ['primeiroNome', 'string', 'min' => 2, 'max' => 255],
-
-        ['ultimoNome', 'required'],
-        ['ultimoNome', 'string', 'min' => 2, 'max' => 255],
-
-        ['dataNascimento', 'trim'],
-
-        ['altura', 'trim'],
-
-        ['peso', 'trim'],
-        ['peso', 'required'],
-        ['peso', 'string', 'min' => 2, 'max' => 255],
-
-        ['sexo', 'trim'],
-        ['sexo', 'required'],
-        ['sexo', 'boolean'],
-
         ['email', 'trim'],
         ['email', 'required'],
         ['email', 'email'],
         ['email', 'string', 'max' => 255],
-        ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
 
         ['password', 'required'],
         ['password', 'string', 'min' => 5],

@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use frontend\models\AccountForm;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -163,6 +164,16 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+
+        public function actionAccount()
+    {
+        $model = new AccountForm();
+        return $this->render('account', [
+                'model' => $model,
+
+            ]);
+    }
+
 
     /**
      * Requests password reset.
