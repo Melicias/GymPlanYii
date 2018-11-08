@@ -41,8 +41,11 @@ AppAsset::register($this);
         ['label' => 'Treinos', 'url' => ['/treino']],
         ['label' => 'Exercicios', 'url' => ['/exercicio']],
         ['label' => 'Zona Exercicio', 'url' => ['/zona-exercicio']],
-        ['label' => 'Dificuldades', 'url' => ['/dificuldade']],
-        ['label' => 'Categorias', 'url' => ['/categoria']]
+        ['label' => 'Exercicio', 'url' => ['/exercicio']],
+        ['label' => 'Dificuldade', 'url' => ['/dificuldade']],
+        ['label' => 'Categoria', 'url' => ['/categoria']],
+        ['label' => 'Treino', 'url' => ['/treino']],
+        ['label' => 'Bloquear Utilizadores', 'url' => ['/user']]
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];

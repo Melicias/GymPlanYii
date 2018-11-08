@@ -45,14 +45,12 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return [
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
-            [['primeiroNome', 'ultimoNome', 'dataNascimento', 'altura', 'peso', 'sexo', 'email', 'password_hash', 'created_at', 'updated_at', 'auth_key'], 'required'],
+            [['primeiroNome', 'ultimoNome', 'dataNascimento', 'altura', 'peso', 'sexo', 'email'], 'required'],
             [['dataNascimento'], 'safe'],
             [['altura', 'peso'], 'number'],
-            [['sexo', 'status', 'created_at', 'updated_at'], 'integer'],
+            [['sexo'], 'integer'],
             [['primeiroNome', 'ultimoNome'], 'string', 'max' => 25],
             [['email'], 'string', 'max' => 120],
-            [['password_hash', 'password_reset_token'], 'string', 'max' => 255],
-            [['auth_key'], 'string', 'max' => 32],
             [['email'], 'unique'],
         ];
     }
@@ -89,7 +87,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public static function findIdentity($id)
     {
-        return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
+        return static::findOne(['id_user' => $id, 'status' => self::STATUS_ACTIVE]);
     }
 
     /**
