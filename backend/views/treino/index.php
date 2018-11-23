@@ -44,6 +44,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' =>function($model){  return Treino::getDificuldadeDificuldade($model->id_dificuldade);},
             ],
             //'repeticoes',
+            [
+                'label' => 'Exercicios',
+                'value' =>function($model){return count($model->exercicios);} ,
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
