@@ -29,6 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute'=>'status',
                 'filter'=>[0 => 'Bloqueado',10 => 'Desbloqueado'],
+                'value' =>function($model){  return $model->status == 10 ? 'Desbloqueado' : 'Bloqueado';},
             ],
 
             //'peso',
