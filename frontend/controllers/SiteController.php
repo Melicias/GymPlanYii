@@ -1,7 +1,9 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\Treino;
 use frontend\models\AccountForm;
+use frontend\models\ShowExerciciosForm;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -73,7 +75,12 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        //return $this->render('index');
+        $treinos = Treino::find()->all();
+        return $this->render('index', [
+            'treinos' => $treinos,
+            'dificuldade' => $treinos,
+        ]);
     }
 
     /**
@@ -172,6 +179,13 @@ class SiteController extends Controller
                 'model' => $model,
 
             ]);
+    }
+    public function actionShowExercicios()
+    {
+        $treinos = Treino::find()->all();
+        return $this->render('show_exercicios', [
+            'treinos' => $treinos,
+        ]);
     }
 
 
