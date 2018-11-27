@@ -3,6 +3,7 @@ namespace frontend\controllers;
 
 use common\models\Treino;
 use frontend\models\AccountForm;
+use frontend\models\PanelWidget;
 use frontend\models\ShowExerciciosForm;
 use Yii;
 use yii\base\InvalidParamException;
@@ -186,6 +187,15 @@ class SiteController extends Controller
         return $this->render('show_exercicios', [
             'treinos' => $treinos,
         ]);
+    }
+    public function actionPanelWidget()
+    {
+        $model = new PanelWidget();
+        return $this->render('index', [
+            'model' => $model,
+        ]);
+
+
     }
 
 

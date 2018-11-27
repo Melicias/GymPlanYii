@@ -1,5 +1,6 @@
 <?php
 
+use common\models\Categoria;
 use common\models\Treino;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -25,23 +26,13 @@ $this->title = 'My Yii Application';
         padding: 2px 16px;
     }
 </style>
+
 <div class="site-index">
 
     <div class="jumbotron">
         <h1>Os Seus Treinos</h1>
     </div>
 
-   <?php
-   $resultados = "";
-   $letra = "";
-   if(isset($_POST['letra']) && strlen($_POST['letra']) == 1){
-       $letra = preg_replace('#[^a-z]#i', '', $_POST['letra']);
-       $resultados = "".$letra;
-   }
-
-
-
-   /* <?php $filtered = array_filter($treinos, create_function('$a', 'return $a[0] == "' . '";')); */ ?>
     <form action="" method="post">
         <table width="100%" border="0" style="border:none;">
             <tr>
