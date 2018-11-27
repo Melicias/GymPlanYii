@@ -165,13 +165,11 @@ class SiteController extends Controller
         ]);
     }
 
-        public function actionAccount()
-    {
+    public function actionAccount(){
         $model = new AccountForm();
         return $this->render('account', [
-                'model' => $model,
-
-            ]);
+            'model' => Yii::$app->user->identity,
+        ]);
     }
 
 

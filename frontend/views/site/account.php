@@ -22,9 +22,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <?= $form->field($model, 'ultimoNome')->textInput(['maxlength' => true]) ?>
 
-            <?= $form->field($model, 'email') ?>
+            <?= $form->field($model, 'peso')->textInput(['maxlength' => true]) ?>
 
-            <?= $form->field($model, 'password')->passwordInput() ?>
+            <?= $form->field($model, 'altura')->textInput(['maxlength' => true]) ?>
+
+            <?= $form->field($model, 'email')->textInput(['disabled' => true]) ?>
+
+            <?= $form->field($model, 'dataNascimento')->textInput(['disabled' => true]) ?>
+
 
             <div class="form-group">
                 <?= Html::submitButton('Alterar', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
@@ -33,4 +38,5 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php ActiveForm::end(); ?>
         </div>
     </div>
+
 </div>
