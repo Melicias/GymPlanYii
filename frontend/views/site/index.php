@@ -9,24 +9,6 @@ use yii\widgets\ActiveForm;
 
 $this->title = 'My Yii Application';
 ?>
-
-<style>
-    .card {
-        box-shadow: 0 2px 8px 0 rgba(0,0,0,0.2);
-        transition: 0.3s;
-        width: 400px;
-        height: 300px;
-    }
-
-    .card:hover {
-        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-    }
-
-    .container {
-        padding: 2px 16px;
-    }
-</style>
-
 <div class="site-index">
 
     <div class="jumbotron">
@@ -37,7 +19,7 @@ $this->title = 'My Yii Application';
         <table width="100%" border="0" style="border:none;">
             <tr>
                 <td><label>Nome: </label><input type="text" name="nome" /></td>
-                <td><label>Dificuldade: </label><input type="text" name="dificuldade" /></td>
+                <td><label>Dificuldade: </label><select><?php foreach ($dificuldades as $dificuldade){?> <option value="<?=$dificuldade->id_dificuldade?>"><?=$dificuldade->dificuldade?></option><?php } ?></select></td>
                 <td><label>Categoria: </label><input type="text" name="categoria" /></td>
                 <td><input class="button" type="submit" name="submit" value="Search" /></td>
             </tr>
@@ -48,7 +30,7 @@ $this->title = 'My Yii Application';
     <div class="body-content" >
                 <div class="card">
             <?php /* <img  src="Meter Imagem" alt="Avatar" style="width:100%"> */ ?>
-            <div class="container">
+            <div id="container_index" class="container">
               <h1> <?=$treinos[$i]->nome?></h1>
                 <h4>Dificuldade: </h4><p><?=$treinos[$i]->dificuldade->dificuldade?></p>
                 <h4>Categoria: </h4><p><?=$treinos[$i]->categoria->nome?></p>

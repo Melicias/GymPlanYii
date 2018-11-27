@@ -1,6 +1,8 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\Categoria;
+use common\models\Dificuldade;
 use common\models\Treino;
 use frontend\models\AccountForm;
 use frontend\models\PanelWidget;
@@ -78,9 +80,12 @@ class SiteController extends Controller
     {
         //return $this->render('index');
         $treinos = Treino::find()->all();
+        $categorias = Categoria::find()->all();
+        $dificuldades = Dificuldade::find()->all();
         return $this->render('index', [
             'treinos' => $treinos,
-            'dificuldade' => $treinos,
+            'categorias' => $categorias,
+            'dificuldades' => $dificuldades,
         ]);
     }
 

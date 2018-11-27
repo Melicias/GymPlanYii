@@ -118,3 +118,18 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+.card {
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 400px;
+    height: 300px;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+#container_index {
+    padding: 2px 16px;
+}
