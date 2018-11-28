@@ -1,7 +1,7 @@
 <?php
 
 use common\models\Categoria;
-use common\models\Treino;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -11,41 +11,33 @@ $this->title = 'My Yii Application';
 ?>
 <div class="site-index">
     <div class="jumbotron">
-        <h1>Os Seus Treinos</h1>
+        <h1>Todos os Treinos</h1>
     </div>
-
-    <form action="" method="post">
+    <?php $form = ActiveForm::begin(); ?>
         <div class="row">
             <div class="col-md-3 col-sm-4">
-                <label>Nome: </label>
-                <input class="form-control" type="text" name="nome" />
+                <?= $form->field($model, 'nome')->textInput() ?>
             </div>
             <div class="col-md-4 col-sm-6">
-                <label>Dificuldade: </label>
-                <select class="form-control">
-                    <option value="0">Nenhuma</option>
-                    <?php foreach ($dificuldades as $dificuldade){?>
-                        <option value="<?=$dificuldade->id_dificuldade?>"><?=$dificuldade->dificuldade?></option><?php } ?>
-                </select>
+                <?= $form->field($model, 'id_dificuldade')->dropDownList(
+                    ArrayHelper::map($dificuldades, 'id_dificuldade', 'dificuldade'),['prompt' => '']) ?>
             </div>
             <div class="col-md-4 col-sm-6">
-                <label>Categoria: </label><select class="form-control">
-                    <option value="0">Nenhuma</option>
-                    <?php foreach ($categorias as $categoria){?>
-                        <option value="<?=$categoria->id_categoria?>"><?=$categoria->nome?></option><?php } ?>
-                </select>
+                <?= $form->field($model, 'id_categoria')->dropDownList(
+                    ArrayHelper::map(Categoria::find()->asArray()->all(), 'id_categoria', 'nome'),['prompt' => '']) ?>
             </div>
             <div class="col-sm-6 col-md-1">
                 <br>
-                <input class="btn btn-default btn-primary" type="submit" name="submit" value="Pesquisar" />
+                <?= Html::submitButton('Pesquisar', ['class' => 'btn btn-success']) ?>
             </div>
         </div>
-    </form>
+    <?php ActiveForm::end(); ?>
 
     <br><br>
     <div class="container-fluid cards-row">
         <div class="row">
-            <?php for($i = 0;$i<count($treinos);$i++){ ?>
+            <?php $treinos = $dataProvider->getModels();
+            for($i = 0;$i<count($treinos);$i++){ ?>
             <div class="body-content col-sm-6 col-md-4" >
                 <div class="thumbnail">
                     <div class="caption">
@@ -63,7 +55,9 @@ $this->title = 'My Yii Application';
                     </div>
                 </div>
             </div>
-            <?php };?>
+            <?php };
+
+            ?>
         </div>
     </div>
 </div>
