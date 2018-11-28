@@ -30,6 +30,7 @@ class ZonaExercicio extends \yii\db\ActiveRecord
         return [
             [['nome'], 'required'],
             [['nome'], 'string', 'max' => 30],
+            [['nome'], 'unique'],
         ];
     }
 
@@ -51,4 +52,5 @@ class ZonaExercicio extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Exercicio::className(), ['id_zona' => 'id_zona']);
     }
+
 }
