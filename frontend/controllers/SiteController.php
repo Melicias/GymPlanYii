@@ -4,11 +4,13 @@ namespace frontend\controllers;
 use common\models\Categoria;
 use common\models\Dificuldade;
 use common\models\Treino;
+use common\models\TreinoSearch;
 use frontend\models\AccountForm;
 use frontend\models\PanelWidget;
 use frontend\models\ShowExerciciosForm;
 use Yii;
 use yii\base\InvalidParamException;
+use yii\base\Object;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -76,16 +78,26 @@ class SiteController extends Controller
      *
      * @return mixed
      */
+
     public function actionIndex()
     {
-        //return $this->render('index');
-        $treinos = Treino::find()->all();
+        $searchModel = new TreinoSearch();
+        $searchModel->load(Yii::$app->request->post());
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        /*return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);*/
+
         $categorias = Categoria::find()->all();
         $dificuldades = Dificuldade::find()->all();
+        
         return $this->render('index', [
-            'treinos' => $treinos,
             'categorias' => $categorias,
             'dificuldades' => $dificuldades,
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'model' => $searchModel
         ]);
     }
 
