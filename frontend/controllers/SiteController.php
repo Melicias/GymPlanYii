@@ -1,16 +1,20 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\Admin;
 use common\models\Categoria;
 use common\models\Dificuldade;
+use common\models\Exercicio;
+use common\models\ExercicioSearch;
 use common\models\Treino;
 use common\models\TreinoSearch;
 use frontend\models\AccountForm;
 use frontend\models\PanelWidget;
 use frontend\models\ShowExerciciosForm;
+use frontend\models\VisualizarForm;
 use Yii;
 use yii\base\InvalidParamException;
-use yii\base\Object;
+use yii\base\BaseObject;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -123,6 +127,18 @@ class SiteController extends Controller
         }
     }
 
+    public function actionVisualizar(){
+        $searchModel = new ExercicioSearch();
+        $searchModel->load(Yii::$app->request->post());
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('visualizar', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'model' => $searchModel
+        ]);
+    }
+
     /**
      * Logs out the current user.
      *
@@ -142,21 +158,14 @@ class SiteController extends Controller
      */
     public function actionContact()
     {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
-                Yii::$app->session->setFlash('success', 'Thank you for contacting us. We will respond to you as soon as possible.');
-            } else {
-                Yii::$app->session->setFlash('error', 'There was an error sending your message.');
-            }
+        $admin = Admin::find()->all();
 
-            return $this->refresh();
-        } else {
-            return $this->render('contact', [
-                'model' => $model,
-            ]);
-        }
+        return $this->render('contact', [
+            'admins' => $admin,
+
+        ]);
     }
+
 
     /**
      * Displays about page.
@@ -200,6 +209,7 @@ class SiteController extends Controller
         $treinos = Treino::find()->all();
         return $this->render('show_exercicios', [
             'treinos' => $treinos,
+
         ]);
     }
     public function actionPanelWidget()

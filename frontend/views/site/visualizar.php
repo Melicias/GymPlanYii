@@ -1,0 +1,48 @@
+<?php
+
+use common\models\Categoria;
+use yii\helpers\ArrayHelper;
+use yii\widgets\ActiveForm;
+
+/* @var $this yii\web\View */
+/* ArrayHelper::map(Categoria::find()->asArray()->all(), 'exercicio', 'nome'),['prompt' => '']) */
+$this->title = 'GymPlan';
+?>
+<div class="site-index">
+    <div class="jumbotron">
+        <h1>Todos os Treinos</h1>
+    </div>
+    <?php $form = ActiveForm::begin(); ?>
+    <div class="container-fluid cards-row">
+        <div class="row">
+            <?php $model = $dataProvider->getModels();
+            for ($i = 0; $i < count($model); $i++) { ?>
+                <div class="body-content col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <h1 style="text-align: center"> <?= $model[$i]->nome ?></h1>
+                            <div style="padding-left: 20px">
+                                <p class="card-description" style="font-size: 16px"><strong style="font-size: 18px">Nome:</strong> <?= $model[$i]->nome ?>
+                                </p>
+                                <p class="card-description" style="font-size: 16px"><strong style="font-size: 18px">Descrição:</strong> <?= $model[$i]->descricao ?>
+                                </p>
+                                <p class="card-description" style="font-size: 16px"><strong style="font-size: 18px">Repetições:</strong> <?= $model[$i]->repeticoes ?>
+                                </p>
+                                <p class="card-description" style="font-size: 16px"><strong style="font-size: 18px">Tempo::</strong> <?= $model[$i]->tempo ?>
+                                </p>
+                                <p class="card-description" style="font-size: 16px"><strong style="font-size: 18px">Tempo::</strong> <?= $model[$i]->foto ?>
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php };
+
+            ?>
+
+            <?php ActiveForm::end(); ?>
+        </div>
+    </div>
+
+</div>

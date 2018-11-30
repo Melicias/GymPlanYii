@@ -32,7 +32,7 @@ class SignupForm extends Model
             ['ultimoNome', 'string', 'min' => 3, 'max' => 255],
 
             ['dataNascimento', 'required'],
-            ['dataNascimento', 'date' ,'format' => 'php:d-m-Y'],
+            ['dataNascimento', 'date' ,'format' => 'php:d-m-Y', 'message' => 'The Format is DD-MM-YYYY'],
 
             ['altura', 'number', 'min' => 1.00, 'max' => 2.50],
             ['peso', 'required'],

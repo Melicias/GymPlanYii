@@ -32,17 +32,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' =>function($model){  return $model->status == 10 ? 'Desbloqueado' : 'Bloqueado';},
             ],
 
-            //'peso',
-            //'sexo',
-            //'email:email',
-            //'password_hash',
-            //'password_reset_token',
-            //'status',
-            //'created_at',
-            //'updated_at',
-            //'auth_key',
-
-            ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 </div>
