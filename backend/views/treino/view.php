@@ -2,6 +2,10 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\grid\GridView;
+use yii\helpers\ArrayHelper;
+use common\models\ZonaExercicio;
+use common\models\Exercicio;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Treino */
@@ -45,41 +49,59 @@ $this->params['breadcrumbs'][] = $this->title;
     ]);
     ?>
 
+    <?=Html::beginForm(['add-exerciciotreino', 'id' => $model->id_treino],'post');?>
+    <?= GridView::widget([
+        'dataProvider' => $dataProviderExercicio,
+        'filterModel' => $searchModelExercicio,
+        'columns' => [
+            ['class' => 'yii\grid\CheckboxColumn'],
+            'id_exercicio',
+            'nome',
+            [
+                'attribute'=>'id_zona',
+                'filter'=>ArrayHelper::map(ZonaExercicio::find()->asArray()->all(), 'id_zona', 'nome'),
+                'value' =>function($model){  return Exercicio::getZonaName($model->id_zona);},
+            ],
+        ],
+    ]); ?>
+    <?=Html::submitButton('Adicionar exercicios', ['class' => 'btn btn-info',]);?>
+    <?= Html::endForm();?>
+
     <h2>Exercicios: </h2>
-    <?= Html::a('Adicionar Exercicios', ['addExercicioTreino', 'id' => $model->id_treino], ['class' => 'btn btn-primary btn-success']) ?>
     <br><br>
     <div class="container-fluid cards-row">
-        <div class="container">
-            <div class="row">
+        <div class="row">
 
     <?php
-        if($model->exercicios != null){
-            for($i = 0;$i<count($model->exercicios);$i++){?>
-                <div class="col-sm-6 col-md-4">
-                    <div class="thumbnail">
-                        <object class=".img-responsive" height="250px" data="<?=$model->exercicios[$i]->foto;?>" type="image/png" style="width:100%;">
-                            <img src="https://dubsism.files.wordpress.com/2017/12/image-not-found.png" alt="Imagem não disponivel" style="width:100%; display:block">
-                        </object>
-                        <div class="caption">
-                            <h3 style="text-align: center"><?=$model->exercicios[$i]->nome;?></h3>
-                            <p class="card-description">Zona de treino:<?=$model->exercicios[$i]->getZonaNameInExercicio();?></p>
-                            <p class="card-description"><?=$model->exercicios[$i]->descricao;?></p>
+    if($model->exercicios != null){
+        for($i = 0;$i<count($model->exercicios);$i++){?>
+            <?=Html::beginForm(['remove-exerciciotreino', 'idExercicio' => $model->exercicios[$i]->id_exercicio, 'id' => $model->id_treino],'post');?>
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <object class=".img-responsive" height="250px" data="<?=$model->exercicios[$i]->foto;?>" type="image/png" style="width:100%;">
+                        <img src="https://dubsism.files.wordpress.com/2017/12/image-not-found.png" alt="Imagem não disponivel" style="width:100%; display:block">
+                    </object>
+                    <div class="caption">
+                        <h3 style="text-align: center"><?=$model->exercicios[$i]->nome;?></h3>
+                        <p class="card-description">Zona de treino:<?=$model->exercicios[$i]->getZonaNameInExercicio();?></p>
+                        <p class="card-description"><?=$model->exercicios[$i]->descricao;?></p>
+                        <?php
+                            if($model->exercicios[$i]->tempo != null){
+                            ?>
+                                <p class="card-description">Tempo:<?=$model->exercicios[$i]->tempo;?> segundos</p>
                             <?php
-                                if($model->exercicios[$i]->tempo != null){
-                                ?>
-                                    <p class="card-description">Tempo:<?=$model->exercicios[$i]->tempo;?> segundos</p>
-                                <?php
-                                }else{ ?>
-                                    <p class="card-description">Repeticoes:<?=$model->exercicios[$i]->repeticoes;?></p>
-                                <?php } ?>
-                            <p><a href="#" class="btn btn-primary btn-danger" role="button">Remover</a></p>
-                        </div>
+                            }else{ ?>
+                                <p class="card-description">Repeticoes:<?=$model->exercicios[$i]->repeticoes;?></p>
+                            <?php } ?>
+                        <br>
+                        <?=Html::submitButton('Remover exercicio', ['class' => 'btn btn-danger',]);?>
                     </div>
                 </div>
-            <?php }
-        }
-    ?>
             </div>
+            <?= Html::endForm();?>
+        <?php }
+         }
+     ?>
         </div>
     </div>
 

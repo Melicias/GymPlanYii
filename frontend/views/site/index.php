@@ -16,14 +16,14 @@ $this->title = 'My Yii Application';
     <?php $form = ActiveForm::begin(); ?>
         <div class="row">
             <div class="col-md-3 col-sm-4">
-                <?= $form->field($model, 'nome')->textInput() ?>
+                <?= $form->field($searchModel, 'nome')->textInput() ?>
             </div>
             <div class="col-md-4 col-sm-6">
-                <?= $form->field($model, 'id_dificuldade')->dropDownList(
+                <?= $form->field($searchModel, 'id_dificuldade')->dropDownList(
                     ArrayHelper::map($dificuldades, 'id_dificuldade', 'dificuldade'),['prompt' => '']) ?>
             </div>
             <div class="col-md-4 col-sm-6">
-                <?= $form->field($model, 'id_categoria')->dropDownList(
+                <?= $form->field($searchModel, 'id_categoria')->dropDownList(
                     ArrayHelper::map(Categoria::find()->asArray()->all(), 'id_categoria', 'nome'),['prompt' => '']) ?>
             </div>
             <div class="col-sm-6 col-md-1">

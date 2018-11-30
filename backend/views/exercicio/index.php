@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\grid\GridView;
 use common\models\ZonaExercicio;
+use common\models\Exercicio;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\ExercicioSearch */
@@ -34,6 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute'=>'id_zona',
                 'filter'=>ArrayHelper::map(ZonaExercicio::find()->asArray()->all(), 'id_zona', 'nome'),
+                'value' =>function($model){  return Exercicio::getZonaName($model->id_zona);},
             ],
             //'repeticoes',
             //'tempo',

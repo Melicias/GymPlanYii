@@ -91,13 +91,12 @@ class SiteController extends Controller
 
         $categorias = Categoria::find()->all();
         $dificuldades = Dificuldade::find()->all();
-        
+
         return $this->render('index', [
             'categorias' => $categorias,
             'dificuldades' => $dificuldades,
             'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-            'model' => $searchModel
+            'dataProvider' => $dataProvider
         ]);
     }
 
