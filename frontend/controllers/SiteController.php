@@ -4,11 +4,13 @@ namespace frontend\controllers;
 use common\models\Admin;
 use common\models\Categoria;
 use common\models\Dificuldade;
+use common\models\Exercicio;
 use common\models\Treino;
 use common\models\TreinoSearch;
 use frontend\models\AccountForm;
 use frontend\models\PanelWidget;
 use frontend\models\ShowExerciciosForm;
+use frontend\models\VisualizarForm;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\base\BaseObject;
@@ -125,6 +127,20 @@ class SiteController extends Controller
         }
     }
 
+    public function actionVisualizar(){
+        $exercicio = Exercicio::find()->all();
+        $searchModel = new TreinoSearch();
+        $searchModel->load(Yii::$app->request->post());
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('visualizar', [
+           'Exercicio' => $exercicio,
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'model' => $searchModel
+        ]);
+    }
+
     /**
      * Logs out the current user.
      *
@@ -195,6 +211,7 @@ class SiteController extends Controller
         $treinos = Treino::find()->all();
         return $this->render('show_exercicios', [
             'treinos' => $treinos,
+
         ]);
     }
     public function actionPanelWidget()

@@ -7,7 +7,7 @@ use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = 'GymPlan';
 ?>
 <div class="site-index">
     <div class="jumbotron">
@@ -34,6 +34,7 @@ $this->title = 'My Yii Application';
     <?php ActiveForm::end(); ?>
 
     <br><br>
+
     <div class="container-fluid cards-row">
         <div class="row">
             <?php $treinos = $dataProvider->getModels();
@@ -50,7 +51,7 @@ $this->title = 'My Yii Application';
                             </div>
                         </div>
                         <div style="text-align: right">
-                            <input class="btn btn-default btn-primary" style="" type="submit" name="submit" value="Visualizar treino" />
+                            <?= Html::a('Visualizar Exercicios', ['visualizar'], ['class' => 'btn btn-success']) ?>
                         </div>
                     </div>
                 </div>

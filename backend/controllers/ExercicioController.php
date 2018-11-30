@@ -66,10 +66,10 @@ class ExercicioController extends Controller
     {
         $model = new Exercicio();
 
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id_exercicio]);
         }
-
         return $this->render('create', [
             'model' => $model,
         ]);
