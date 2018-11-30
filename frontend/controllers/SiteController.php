@@ -11,7 +11,7 @@ use frontend\models\PanelWidget;
 use frontend\models\ShowExerciciosForm;
 use Yii;
 use yii\base\InvalidParamException;
-use yii\base\Object;
+use yii\base\BaseObject;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
