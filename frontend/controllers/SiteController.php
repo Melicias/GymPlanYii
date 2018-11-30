@@ -5,6 +5,7 @@ use common\models\Admin;
 use common\models\Categoria;
 use common\models\Dificuldade;
 use common\models\Exercicio;
+use common\models\ExercicioSearch;
 use common\models\Treino;
 use common\models\TreinoSearch;
 use frontend\models\AccountForm;
@@ -128,13 +129,11 @@ class SiteController extends Controller
     }
 
     public function actionVisualizar(){
-        $exercicio = Exercicio::find()->all();
-        $searchModel = new TreinoSearch();
+        $searchModel = new ExercicioSearch();
         $searchModel->load(Yii::$app->request->post());
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('visualizar', [
-           'Exercicio' => $exercicio,
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'model' => $searchModel
