@@ -13,6 +13,7 @@ $this->title = 'GymPlan';
     <div class="jumbotron">
         <h1>Todos os Treinos</h1>
     </div>
+    <?php $form = ActiveForm::begin(); ?>
         <div class="row">
             <div class="col-md-3 col-sm-4">
                 <?= $form->field($searchModel, 'nome')->textInput() ?>
