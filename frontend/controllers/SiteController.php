@@ -88,10 +88,6 @@ class SiteController extends Controller
         $searchModel = new TreinoSearch();
         $searchModel->load(Yii::$app->request->post());
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        /*return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);*/
 
         $categorias = Categoria::find()->all();
         $dificuldades = Dificuldade::find()->all();
@@ -127,15 +123,11 @@ class SiteController extends Controller
         }
     }
 
-    public function actionVisualizar(){
-        $searchModel = new ExercicioSearch();
-        $searchModel->load(Yii::$app->request->post());
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+    public function actionVisualizarTreino($id){
+        $model = Treino::findOne(['id_treino' => $id]);
 
-        return $this->render('visualizar', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-            'model' => $searchModel
+        return $this->render('visualizarTreino', [
+            'model' => $model
         ]);
     }
 

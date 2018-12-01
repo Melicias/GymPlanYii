@@ -40,6 +40,7 @@ $this->title = 'GymPlan';
         <div class="row">
             <?php $treinos = $dataProvider->getModels();
             for ($i = 0; $i < count($treinos); $i++) { ?>
+                <?=Html::beginForm(['visualizar-treino', 'id' => $treinos[$i]->id_treino],'post'); ?>
                 <div class="body-content col-sm-6 col-md-4">
                     <div class="thumbnail">
                         <div class="caption">
@@ -56,11 +57,12 @@ $this->title = 'GymPlan';
                                 </div>
                             </div>
                             <div style="text-align: right">
-                                <?= Html::a('Visualizar Exercicios', ['visualizar'], ['class' => 'btn btn-success']) ?>
+                                <?=Html::submitButton('Visualizar Exercicios', ['class' => 'btn btn-success']);?>
                             </div>
                         </div>
                     </div>
                 </div>
+                <?=Html::endForm(); ?>
             <?php };
 
             ?>

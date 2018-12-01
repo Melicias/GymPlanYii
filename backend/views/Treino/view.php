@@ -64,7 +64,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ],
     ]); ?>
-    <?=Html::submitButton('Adicionar exercicios', ['class' => 'btn btn-info',]);?>
+    <?=Html::submitButton('Adicionar exercicios', ['class' => 'btn btn-info']);?>
     <?= Html::endForm();?>
 
     <h2>Exercicios: </h2>
