@@ -19,7 +19,7 @@ $this->title = 'GymPlan';
         <p><strong>&emsp;Dificuldade: </strong><?=$model->getDificuldadeDificuldade($model->id_dificuldade);?></p>
         <p><strong>&emsp;Número de repetições: </strong><?=$model->repeticoes;?></p>
         <p>Este é um treino com um nivel de dificuldade número <?=$model->getDificuldadeDificuldade($model->id_dificuldade);?>
-            que está enquadrado na categoria <?=$model->getCategoriaName($model->id_categoria);?> e deverá repetir o treino <?=$model->repeticoes;?> vezes</p>
+            que está enquadrado na categoria <?=$model->getCategoriaName($model->id_categoria);?> e deverá repetir o exercicio <?=$model->repeticoes;?> vezes</p>
         <p>O personal treinar que criou este treino deixou a seguinte nota no treino:
         <br>&emsp;<?=$model->descricao;?></p>
         <br>
