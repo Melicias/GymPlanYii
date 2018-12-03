@@ -2,9 +2,12 @@
 
 namespace backend\controllers;
 
+use common\models\ExercicioSearch;
+use common\models\ExerciciosNotOnTreinoSearch;
 use Yii;
 use common\models\Treino;
 use common\models\TreinoSearch;
+use common\models\Exercicio;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -52,8 +55,13 @@ class TreinoController extends Controller
      */
     public function actionView($id)
     {
+        $searchModel = new ExercicioSearch();
+        $dataProvider = $searchModel->searchWithinTreino(Yii::$app->request->queryParams,$this->findModel($id));
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'searchModelExercicio' => $searchModel,
+            'dataProviderExercicio' => $dataProvider,
         ]);
     }
 
@@ -95,13 +103,42 @@ class TreinoController extends Controller
         ]);
     }
 
-    /**
-     * Deletes an existing Treino model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    public function actionAddExerciciotreino($id)
+    {
+        $model = $this->findModel($id);
+        //$user->link('markets', $market);
+        $selection=(array)Yii::$app->request->post('selection');
+        foreach($selection as $idExercicio){
+            $exercicio = Exercicio::findOne(['id_exercicio' => $idExercicio]);
+            $model->link('exercicios', $exercicio);
+        }
+
+        $searchModel = new ExercicioSearch();
+        $dataProvider = $searchModel->searchWithinTreino(Yii::$app->request->queryParams,$this->findModel($id));
+
+        return $this->render('view', [
+            'model' => $model,
+            'searchModelExercicio' => $searchModel,
+            'dataProviderExercicio' => $dataProvider,
+        ]);
+    }
+
+    public function actionRemoveExerciciotreino($idExercicio, $id)
+    {
+        $model = $this->findModel($id);
+        $exercicio = Exercicio::findOne(['id_exercicio' => $idExercicio]);
+        $model->unlink('exercicios',$exercicio, true);
+
+        $searchModel = new ExercicioSearch();
+        $dataProvider = $searchModel->searchWithinTreino(Yii::$app->request->queryParams,$this->findModel($id));
+
+        return $this->render('view', [
+            'model' => $model,
+            'searchModelExercicio' => $searchModel,
+            'dataProviderExercicio' => $dataProvider,
+        ]);
+    }
+
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();

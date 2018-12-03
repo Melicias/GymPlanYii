@@ -84,7 +84,7 @@ class Exercicio extends \yii\db\ActiveRecord
     /**
      * @return String
      */
-    public function getZonaName($id)
+    public static function getZonaName($id)
     {
         $cat = ZonaExercicio::find()->where(['id_zona' => $id])->one();
         return $cat->nome;

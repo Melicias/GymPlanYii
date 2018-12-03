@@ -5,6 +5,7 @@ use common\models\Admin;
 use common\models\Categoria;
 use common\models\Dificuldade;
 use common\models\Exercicio;
+use common\models\ExercicioSearch;
 use common\models\Treino;
 use common\models\TreinoSearch;
 use frontend\models\AccountForm;
@@ -87,20 +88,15 @@ class SiteController extends Controller
         $searchModel = new TreinoSearch();
         $searchModel->load(Yii::$app->request->post());
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        /*return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);*/
 
         $categorias = Categoria::find()->all();
         $dificuldades = Dificuldade::find()->all();
-        
+
         return $this->render('index', [
             'categorias' => $categorias,
             'dificuldades' => $dificuldades,
             'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-            'model' => $searchModel
+            'dataProvider' => $dataProvider
         ]);
     }
 
@@ -127,17 +123,11 @@ class SiteController extends Controller
         }
     }
 
-    public function actionVisualizar(){
-        $exercicio = Exercicio::find()->all();
-        $searchModel = new TreinoSearch();
-        $searchModel->load(Yii::$app->request->post());
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+    public function actionVisualizarTreino($id){
+        $model = Treino::findOne(['id_treino' => $id]);
 
-        return $this->render('visualizar', [
-           'Exercicio' => $exercicio,
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-            'model' => $searchModel
+        return $this->render('visualizarTreino', [
+            'model' => $model
         ]);
     }
 
