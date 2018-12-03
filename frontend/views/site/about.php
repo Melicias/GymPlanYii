@@ -8,7 +8,7 @@ $this->title = 'Sobre';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-about">
-    <h1>Sobre a Aplicação:</h1>
+    <h1>Sobre o website:</h1>
 
     <p></p>
 

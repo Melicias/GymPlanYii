@@ -57,7 +57,7 @@ $this->title = 'GymPlan';
                                 </div>
                             </div>
                             <div style="text-align: right">
-                                <?=Html::submitButton('Visualizar Exercicios', ['class' => 'btn btn-success']);?>
+                                <?=Html::submitButton('Visualizar Treino', ['class' => 'btn btn-info']);?>
                             </div>
                         </div>
                     </div>

@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\grid\GridView;
 
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'GymPlan Admin';
 
 ?>
 <div class="index">

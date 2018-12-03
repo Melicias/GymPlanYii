@@ -68,8 +68,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]);
-
-    var_dump(Yii::$app->request->queryParams);
     ?>
 
 </div>
