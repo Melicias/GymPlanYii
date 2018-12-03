@@ -26,10 +26,10 @@ class SignupForm extends Model
     {
         return [
             ['primeiroNome', 'required'],
-            ['primeiroNome', 'string', 'min' => 3, 'max' => 255],
+            ['primeiroNome', 'string', 'min' => 3, 'max' => 25],
 
             ['ultimoNome', 'required'],
-            ['ultimoNome', 'string', 'min' => 3, 'max' => 255],
+            ['ultimoNome', 'string', 'min' => 3, 'max' => 25],
 
             ['dataNascimento', 'required'],
             ['dataNascimento', 'date' ,'format' => 'php:d-m-Y'],

@@ -30,38 +30,35 @@ class LoginFormTest extends \Codeception\Test\Unit
         ];
     }
 
-    public function testLoginNoUser()
+    public function testNoUser()
     {
         $model = new LoginForm([
-            'username' => 'not_existing_username',
-            'password' => 'not_existing_password',
+            'primeiroNome' => 'not_existing_username',
+            'ultimoNome' => 'not_existing_password',
         ]);
 
-        expect('model should not login user', $model->login())->false();
+        expect('Erro', $model->login())->false();
         expect('user should not be logged in', Yii::$app->user->isGuest)->true();
     }
 
-    public function testLoginWrongPassword()
+    public function testWrongPassword()
     {
         $model = new LoginForm([
-            'username' => 'bayer.hudson',
-            'password' => 'wrong_password',
+            'password' => ''
         ]);
 
-        expect('model should not login user', $model->login())->false();
-        expect('error message should be set', $model->errors)->hasKey('password');
-        expect('user should not be logged in', Yii::$app->user->isGuest)->true();
+        expect('Password errada', $model->errors)->hasKey('password');
+
     }
 
     public function testLoginCorrect()
     {
         $model = new LoginForm([
-            'username' => 'bayer.hudson',
-            'password' => 'password_0',
+            'primeiroNome' => 'Gonçalo',
+            'ultimoNome' => 'Amaro',
+            'password' => 'asdqwe123',
         ]);
 
-        expect('model should login user', $model->login())->true();
-        expect('error message should not be set', $model->errors)->hasntKey('password');
-        expect('user should be logged in', Yii::$app->user->isGuest)->false();
+        expect('User Logged in!', $model->login())->true();
     }
 }
