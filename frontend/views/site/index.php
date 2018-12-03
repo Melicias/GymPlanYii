@@ -28,7 +28,7 @@ $this->title = 'GymPlan';
             </div>
             <div class="col-sm-6 col-md-1">
                 <br>
-                <?= Html::submitButton('Pesquisar', ['class' => 'btn btn-success']) ?>
+                <?= Html::submitButton('Pesquisar', ['class' => 'btn btn-success' ,'style' => 'background-color: #9BC1BC; border: none; color:#fff']) ?>
             </div>
         </div>
     </div>
@@ -50,14 +50,14 @@ $this->title = 'GymPlan';
                                 </p>
                                 <p class="card-description" style="font-size: 16px"><strong style="font-size: 18px">Categoria:</strong> <?= $treinos[$i]->categoria->nome ?>
                                 </p>
-                                <div style="height: 125px">
-                                    <p style="font-size: 12px"><strong
-                                                style="font-size: 14px">Descrição:</strong> <?= $treinos[$i]->descricao ?>
+                                <div class="card-description" style="height: 125px;font-size: 16px">
+                                    <p style="font-size: 16px"><strong
+                                                style="font-size: 16px">Descrição:</strong> <?= $treinos[$i]->descricao ?>
                                     </p>
                                 </div>
                             </div>
                             <div style="text-align: right">
-                                <?=Html::submitButton('Visualizar Treino', ['class' => 'btn btn-info']);?>
+                                <?=Html::submitButton('Visualizar Exercicios', ['class' => 'btn btn-success',  'style' => 'background-color: #9BC1BC; border: none; color:#000000']);?>
                             </div>
                         </div>
                     </div>
