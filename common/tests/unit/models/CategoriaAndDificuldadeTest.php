@@ -3,7 +3,7 @@
 use common\models\Categoria;
 use common\models\Dificuldade;
 
-class CategoriaDificuldadeTest extends \Codeception\Test\Unit
+class CategoriaAndDificuldadeTest extends \Codeception\Test\Unit
 {
     /**
      * @var \common\tests\UnitTester

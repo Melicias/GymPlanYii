@@ -37,8 +37,8 @@ class LoginFormTest extends \Codeception\Test\Unit
             'ultimoNome' => 'not_existing_password',
         ]);
 
-        expect('Erro', $model->login())->false();
-        expect('user should not be logged in', Yii::$app->user->isGuest)->true();
+        expect('Error', $model->login())->false();
+        expect('User should not be logged in', Yii::$app->user->isGuest)->true();
     }
 
     public function testWrongPassword()
@@ -47,7 +47,7 @@ class LoginFormTest extends \Codeception\Test\Unit
             'password' => ''
         ]);
 
-        expect('Password errada', $model->errors)->hasKey('password');
+        expect('Incorrect Password', $model->errors)->hasKey('password');
 
     }
 

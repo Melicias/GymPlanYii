@@ -28,6 +28,9 @@ class SavingUserTest extends \Codeception\Test\Unit
         $user->primeiroNome = 'NomeMuitoLongooooooooooooo';
         $this->assertFalse($user->validate(['primeiroNome']));
 
+        $user->primeiroNome = 'a';
+        $this->assertFalse($user->validate(['primeiroNome']));
+
         $user->ultimoNome = 'Marco';
         $this->assertTrue($user->validate(['ultimoNome']));
 
