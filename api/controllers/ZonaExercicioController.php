@@ -9,5 +9,5 @@ use yii\rest\ActiveController;
  */
 class ZonaExercicioController extends ActiveController
 {
-    public $modelClass = 'common\models\zona_exercicio';
+    public $modelClass = 'common\models\ZonaExercicio';
 }
