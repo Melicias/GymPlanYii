@@ -29,7 +29,7 @@ class ZonaExercicio extends \yii\db\ActiveRecord
     {
         return [
             [['nome'], 'required'],
-            [['nome'], 'string', 'max' => 30],
+            [['nome'], 'string', 'min' => 2 ,'max' => 30],
             [['nome'], 'unique'],
         ];
     }

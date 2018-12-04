@@ -29,9 +29,8 @@ class Dificuldade extends \yii\db\ActiveRecord
     {
         return [
             [['dificuldade'], 'required'],
-            [['dificuldade'], 'integer'],
+            [['dificuldade'], 'number', 'min' => 0, 'max' => 10],
             [['dificuldade'], 'unique'],
-
         ];
     }
 
