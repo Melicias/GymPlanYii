@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <?= $form->field($model, 'email')->textInput(['disabled' => true]) ?>
 
-            <?= $form->field($model, 'dataNascimento')->textInput(['disabled' => true]) ?>
+            <?= $form->field($model, 'dataNascimento')->textInput(['disabled' => true,'value' => $model->dateFormat]) ?>
 
 
             <div class="form-group">

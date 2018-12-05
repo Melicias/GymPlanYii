@@ -34,7 +34,7 @@ class LoginForm extends Model
         ['email', 'string', 'max' => 255],
 
         ['password', 'required'],
-        ['password', 'string', 'min' => 5],
+        ['password', 'string'],
     ];
     }
 

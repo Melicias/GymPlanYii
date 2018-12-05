@@ -20,7 +20,7 @@ return [
             ]
         ],
         'user' => [
-            'identityClass' => 'common\models\Admin',
+            'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-api', 'httpOnly' => true],
         ],
@@ -58,7 +58,14 @@ return [
                         'GET exercicios' => 'exercicios',
                     ]
                 ],
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'user'],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'user',
+                    'extraPatterns' => [
+                        'GET user' => 'user',
+                    ]
+                ],
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'userupdate'],
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'zona-exercicio'],
             ],
         ],

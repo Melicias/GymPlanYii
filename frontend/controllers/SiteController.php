@@ -85,19 +85,23 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        $searchModel = new TreinoSearch();
-        $searchModel->load(Yii::$app->request->post());
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if (Yii::$app->user->isGuest) {
+            return $this->render('indexGuest');
+        }else{
+            $searchModel = new TreinoSearch();
+            $searchModel->load(Yii::$app->request->post());
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        $categorias = Categoria::find()->all();
-        $dificuldades = Dificuldade::find()->all();
+            $categorias = Categoria::find()->all();
+            $dificuldades = Dificuldade::find()->all();
 
-        return $this->render('index', [
-            'categorias' => $categorias,
-            'dificuldades' => $dificuldades,
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider
-        ]);
+            return $this->render('index', [
+                'categorias' => $categorias,
+                'dificuldades' => $dificuldades,
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider
+            ]);
+        }
     }
 
     /**

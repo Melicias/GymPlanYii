@@ -76,8 +76,8 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             'primeiroNome' => 'Primeiro Nome',
             'ultimoNome' => 'Ultimo Nome',
             'dataNascimento' => 'Data Nascimento',
-            'altura' => 'Altura',
-            'peso' => 'Peso',
+            'altura' => 'Altura (Metros)',
+            'peso' => 'Peso (Kg)',
             'sexo' => 'Sexo',
             'email' => 'Email',
             'password_hash' => 'Password Hash',
@@ -112,7 +112,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
+        return static::findOne(['auth_key' => $token]);
     }
 
     /**
@@ -245,5 +245,14 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         $this->password_reset_token = null;
     }
 
+    public static function getSexoName($number){
+        if($number == 0)
+            return "Masculino";
+        return "Feminino";
+    }
+
+    public function getDateFormat(){
+        return '' . date_format(date_create($this->dataNascimento), 'd/m/Y');
+    }
 
 }

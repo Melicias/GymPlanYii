@@ -8,6 +8,7 @@ use Yii;
 use common\models\Treino;
 use common\models\TreinoSearch;
 use common\models\Exercicio;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -23,10 +24,25 @@ class TreinoController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => false,
+                        'roles' => ['?'],
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                    'index' => ['GET'],
+                    'remove-exerciciotreino' => ['POST'],
                 ],
             ],
         ];

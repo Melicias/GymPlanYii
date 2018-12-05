@@ -5,6 +5,7 @@ namespace backend\controllers;
 use Yii;
 use common\models\User;
 use app\models\UserSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -20,10 +21,24 @@ class UserController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => false,
+                        'roles' => ['?'],
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                    'index' => ['GET'],
                 ],
             ],
         ];
@@ -124,4 +139,30 @@ class UserController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+    public function actionBloquearUsers(){
+        $block = Yii::$app->request->post('bloquear');
+        $selection=(array)Yii::$app->request->post('selection');
+        $value = User::STATUS_ACTIVE;
+        if(isset($block)){
+            //bloquear users
+            $value = User::STATUS_DELETED;
+        }
+        foreach ($selection as $id){
+            $user = User::findOne(['id' => $id]);
+            $user->status = $value;
+            $user->save();
+        }
+        return $this->actionIndex();
+    }
+
+    public function actionBloquearUser($id, $value){
+
+        $user = User::findOne(['id' => $id]);
+        $user->status = $value;
+        $user->save();
+
+        return $this->actionView($id);
+    }
+
 }

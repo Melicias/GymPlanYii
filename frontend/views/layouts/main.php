@@ -35,15 +35,19 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-    $menuItems = [
-        ['label' => 'Treinos', 'url' => ['index']],
-        ['label' => 'Sobre', 'url' => ['about']],
-        ['label' => 'Contactos', 'url' => ['contact']]
-    ];
+    $menuItems =[];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Registar', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+        $menuItems[] = ['label' => 'Inicio', 'url' => ['index']];
+    }else{
+        $menuItems[] = ['label' => 'Treinos', 'url' => ['index']];
+    }
+    $menuItems[] = ['label' => 'Sobre', 'url' => ['about']];
+
+
+    if (Yii::$app->user->isGuest) {
+        $menuItems[] = ['label' => 'Login/Registar', 'url' => ['/site/login']];
     } else {
+        $menuItems[] = ['label' => 'Contactos', 'url' => ['contact']];
         $menuItems[] = ['label' => 'Conta', 'url' => ['account']];
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')

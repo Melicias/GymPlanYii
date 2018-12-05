@@ -15,13 +15,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-
+    <?=Html::beginForm(['bloquear-users'],'post');?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
+            ['class' => 'yii\grid\CheckboxColumn'],
             'id',
             'primeiroNome',
             'ultimoNome',
@@ -31,7 +30,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filter'=>[0 => 'Bloqueado',10 => 'Desbloqueado'],
                 'value' =>function($model){  return $model->status == 10 ? 'Desbloqueado' : 'Bloqueado';},
             ],
-
+            ['class' => 'yii\grid\ActionColumn', 'template' => '{view}'],
         ],
     ]); ?>
+    <?=Html::submitButton('Bloquear', ['name' => 'bloquear','class' => 'btn btn-danger']);?>
+    <?=Html::submitButton('Desbloquear', ['name' => 'desbloquear','class' => 'btn btn-success']);?>
+    <?= Html::endForm();?>
 </div>

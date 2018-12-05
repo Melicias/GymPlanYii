@@ -53,6 +53,23 @@ class SignupForm extends Model
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'primeiroNome' => 'Primeiro Nome',
+            'ultimoNome' => 'Ultimo Nome',
+            'dataNascimento' => 'Data Nascimento (dd-mm-aaaa)',
+            'altura' => 'Altura (Metros)',
+            'peso' => 'Peso (Kg)',
+            'sexo' => 'Sexo',
+            'email' => 'Email',
+            'password' => 'Password',
+        ];
+    }
+
+    /**
      * Signs user up.
      *
      * @return User|null the saved model or null if saving fails

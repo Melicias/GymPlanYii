@@ -12,17 +12,9 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?=$model->primeiroNome . " " . $model->ultimoNome?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
     </p>
 
     <?= DetailView::widget([
@@ -31,18 +23,40 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'primeiroNome',
             'ultimoNome',
-            'dataNascimento',
+            [
+                'label' => 'dataNascimento',
+                'value' => date_format(date_create($model->dataNascimento), 'd/m/Y'),
+            ],
             'altura',
             'peso',
-            'sexo',
+            [
+                'label' => 'sexo',
+                'value' => $model->getSexoName($model->sexo),
+            ],
             'email:email',
             'password_hash',
             'password_reset_token',
-            'status',
-            'created_at',
-            'updated_at',
+            [
+                'attribute'=>'status',
+                'filter'=>[0 => 'Bloqueado',10 => 'Desbloqueado'],
+                'value' =>function($model){  return $model->status == 10 ? 'Desbloqueado' : 'Bloqueado';},
+            ],
+            [
+                'label' => 'created_at',
+                'value' => date('m/d/Y', $model->created_at),
+            ],
+            [
+                'label' => 'created_at',
+                'value' => date('m/d/Y', $model->updated_at),
+            ],
             'auth_key',
         ],
     ]) ?>
+
+    <?php if($model->status == \common\models\User::STATUS_ACTIVE){
+        echo Html::a('Bloquear',['bloquear-user','id'=> $model->id,'value'=>\common\models\User::STATUS_DELETED], ['class'=>'btn btn-danger']);
+    }else{
+        echo Html::a('Desbloquear',['bloquear-user','id'=> $model->id,'value'=>\common\models\User::STATUS_ACTIVE], ['class'=>'btn btn-success']);
+    }  ?>
 
 </div>
