@@ -1,11 +1,7 @@
-suite_namespace: common\tests\acception
-actor: AcceptionTester
-bootstrap: false
 modules:
     enabled:
     - Yii2:
-          part: fixtures
-    - Db:
-          dsn: 'mysql:host=localhost;dbname=gymplan'
-          user: 'root'
-          password: ''
+          part: [orm, fixtures]
+          cleanup: false
+          entryScript: index-test.php
+

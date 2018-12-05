@@ -23,4 +23,5 @@ class AcceptionTester extends \Codeception\Actor
    /**
     * Define custom actions here
     */
+
 }
