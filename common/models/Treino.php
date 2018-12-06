@@ -91,7 +91,7 @@ class Treino extends \yii\db\ActiveRecord
 
     public function getExercicios() {
         return $this->hasMany(Exercicio::className(), ['id_exercicio' => 'id_exercicio'])
-            ->viaTable('Treino_Exercicio', ['id_treino' => 'id_treino']);
+            ->viaTable('treino_exercicio', ['id_treino' => 'id_treino']);
     }
 
     /**

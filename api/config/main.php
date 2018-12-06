@@ -66,6 +66,7 @@ return [
                     ]
                 ],
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'userupdate'],
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'usercreate'],
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'zona-exercicio'],
             ],
         ],

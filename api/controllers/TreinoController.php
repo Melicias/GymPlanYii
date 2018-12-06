@@ -29,9 +29,9 @@ class TreinoController extends ActiveController
         $recs = $treinoModel::find()->all();
         $arr = [];
         foreach($recs as $treino){
-            $arr[] = [$treino,'exercicios' => $treino->exercicios];
+            $arr[] = ['treino' => $treino,'exercicios' => $treino->exercicios];
         }
-        return [$arr];
+        return $arr;
     }
 
     //http://127.0.0.1/GymPlanYii/api/web/treino?fields=id_treino,nome&expand=exercicio
