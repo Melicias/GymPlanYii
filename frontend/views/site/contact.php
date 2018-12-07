@@ -9,20 +9,22 @@ use yii\helpers\Html;
 $this->title = 'Contact';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-contact">
+<div class="site-contact"  style="text-align: center">
 
     <h1>
        Contactos de todos os Personal Trainers:
     </h1>
 
     <div class="row">
-        <div class="col-lg-5">
+        <div class="asd"  style="text-align: center">
+            <div class="" style="text-align: center">
+
         <br>
              <?php  foreach ($admins as $admin){
-                  echo $admin->primeiroNome. ' '. $admin->ultimoNome. ' - '. $admin->email ;?>
-                 <br><br>
+                  echo " <b><h3>".$admin->primeiroNome. ' '. $admin->ultimoNome. "</b></h4>".'  '. $admin->email ;?>
+                 <br><br><br>
              <?php }  ?>
-
+            </div>
         </div>
     </div>
 

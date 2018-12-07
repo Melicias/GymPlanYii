@@ -88,6 +88,7 @@ class SiteController extends Controller
         if (Yii::$app->user->isGuest) {
             return $this->render('indexGuest');
         }else{
+            $treinos = Treino::find()->all();
             $searchModel = new TreinoSearch();
             $searchModel->load(Yii::$app->request->post());
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -99,7 +100,9 @@ class SiteController extends Controller
                 'categorias' => $categorias,
                 'dificuldades' => $dificuldades,
                 'searchModel' => $searchModel,
-                'dataProvider' => $dataProvider
+                'dataProvider' => $dataProvider,
+                'treinos' => $treinos,
+
             ]);
         }
     }
@@ -170,7 +173,7 @@ class SiteController extends Controller
      */
     public function actionAbout()
     {
-        return $this->render('about');
+         return $this->render('about');
     }
 
     /**
@@ -226,6 +229,7 @@ class SiteController extends Controller
      */
     public function actionRequestPasswordReset()
     {
+
         $model = new PasswordResetRequestForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail()) {
@@ -249,10 +253,11 @@ class SiteController extends Controller
      * @return mixed
      * @throws BadRequestHttpException
      */
-    public function actionResetPassword($token)
+    public function actionResetPassword()
     {
+
         try {
-            $model = new ResetPasswordForm($token);
+            $model = new ResetPasswordForm();
         } catch (InvalidParamException $e) {
             throw new BadRequestHttpException($e->getMessage());
         }
@@ -262,9 +267,9 @@ class SiteController extends Controller
 
             return $this->goHome();
         }
-
         return $this->render('resetPassword', [
             'model' => $model,
         ]);
+
     }
 }

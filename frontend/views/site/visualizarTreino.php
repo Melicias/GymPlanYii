@@ -11,18 +11,12 @@ $this->title = 'GymPlan';
 <div class="site-index">
     <div class="jumbotron">
         <h1><?=$model->nome;?></h1>
-    </div>
-    <div>
-        <h3>Detalhes do treino: </h3>
-        <p><strong>&emsp;Descrição: </strong><?=$model->descricao;?></p>
+
+        <br><p><strong>&emsp;Descrição: </strong><?=$model->descricao;?></p>
         <p><strong>&emsp;Categoria: </strong><?=$model->getCategoriaName($model->id_categoria);?></p>
         <p><strong>&emsp;Dificuldade: </strong><?=$model->getDificuldadeDificuldade($model->id_dificuldade);?></p>
         <p><strong>&emsp;Número de repetições: </strong><?=$model->repeticoes;?></p>
-        <p>Este é um treino com um nivel de dificuldade número <?=$model->getDificuldadeDificuldade($model->id_dificuldade);?>
-            que está enquadrado na categoria <?=$model->getCategoriaName($model->id_categoria);?> e deverá repetir o exercicio <?=$model->repeticoes;?> vezes</p>
-        <p>O personal treinar que criou este treino deixou a seguinte nota no treino:
-        <br>&emsp;<?=$model->descricao;?></p>
-        <br>
+
     </div>
     <div class="container-fluid cards-row">
         <div class="row">

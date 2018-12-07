@@ -25,7 +25,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <div style="color:#999;margin:1em 0">
                     Não tem uma conta ainda? <?= Html::a('Registe-se', ['site/signup']) ?>.
-                </div>
+                   <br> Esqueceu-se da <?= Html::a('senha', ['site/reset-password']) ?>?
+
+            </div>
 
                 <div class="form-group">
                     <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>

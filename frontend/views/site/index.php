@@ -13,59 +13,68 @@ $this->title = 'GymPlan';
     <div class="jumbotron">
         <h1>Todos os Treinos</h1>
     </div>
-    <?php $form = ActiveForm::begin(); ?>
-        <div class="row">
-            <div class="col-md-3 col-sm-4">
-                <?= $form->field($searchModel, 'nome')->textInput() ?>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <?= $form->field($searchModel, 'id_dificuldade')->dropDownList(
-                    ArrayHelper::map($dificuldades, 'id_dificuldade', 'dificuldade'),['prompt' => '']) ?>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <?= $form->field($searchModel, 'id_categoria')->dropDownList(
-                    ArrayHelper::map(Categoria::find()->asArray()->all(), 'id_categoria', 'nome'),['prompt' => '']) ?>
-            </div>
-            <div class="col-sm-6 col-md-1">
-                <br>
-                <?= Html::submitButton('Pesquisar', ['class' => 'btn btn-success' ,'style' => 'background-color: #9BC1BC; border: none; color:#fff']) ?>
-            </div>
+    <?php
+    $treinos = $dataProvider->getModels();
+    if (count($treinos) > 0){
+
+    $form = ActiveForm::begin(); ?>
+    <div class="row">
+        <div class="col-md-3 col-sm-4">
+            <?= $form->field($searchModel, 'nome')->textInput() ?>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <?= $form->field($searchModel, 'id_dificuldade')->dropDownList(
+                ArrayHelper::map($dificuldades, 'id_dificuldade', 'dificuldade'), ['prompt' => '']) ?>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <?= $form->field($searchModel, 'id_categoria')->dropDownList(
+                ArrayHelper::map(Categoria::find()->asArray()->all(), 'id_categoria', 'nome'), ['prompt' => '']) ?>
+        </div>
+        <div class="col-sm-6 col-md-1">
+            <br>
+            <?= Html::submitButton('Pesquisar', ['class' => 'btn btn-success', 'style' => 'background-color: #9BC1BC1; color:#000000']) ?>
         </div>
     </div>
-    <?php ActiveForm::end(); ?>
+</div>
+<?php ActiveForm::end(); ?>
 
-    <br><br>
+<br><br>
 
-    <div class="container-fluid cards-row">
-        <div class="row">
-            <?php $treinos = $dataProvider->getModels();
-            for ($i = 0; $i < count($treinos); $i++) { ?>
-                <?=Html::beginForm(['visualizar-treino', 'id' => $treinos[$i]->id_treino],'post'); ?>
-                <div class="body-content col-sm-6 col-md-4">
-                    <div class="thumbnail">
-                        <div class="caption">
-                            <h1 style="text-align: center"> <?= $treinos[$i]->nome ?></h1>
-                            <div style="padding-left: 20px">
-                                <p class="card-description" style="font-size: 16px"><strong style="font-size: 18px">Dificuldade:</strong> <?= $treinos[$i]->dificuldade->dificuldade ?>
+<div class="container-fluid cards-row">
+    <div class="row">
+
+        <?php
+        for ($i = 0; $i < count($treinos); $i++) { ?>
+            <?= Html::beginForm(['visualizar-treino', 'id' => $treinos[$i]->id_treino], 'post'); ?>
+            <div class="body-content col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <div class="caption">
+                        <h1 style="text-align: center"> <?= $treinos[$i]->nome ?></h1>
+                        <div style="padding-left: 20px">
+                            <p class="card-description" style="font-size: 16px"><strong style="font-size: 18px">Dificuldade:</strong> <?=$treinos[$i]->dificuldade->dificuldade ?>
+                            </p>
+                            <p class="card-description" style="font-size: 16px"><strong style="font-size: 18px">Categoria:</strong> <?= $treinos[$i]->categoria->nome ?>
+                            </p>
+                            <div class="card-description" style="height: 125px;font-size: 16px">
+                                <p style="font-size: 16px"><strong
+                                            style="font-size: 16px">Descrição:</strong> <?= $treinos[$i]->descricao ?>
                                 </p>
-                                <p class="card-description" style="font-size: 16px"><strong style="font-size: 18px">Categoria:</strong> <?= $treinos[$i]->categoria->nome ?>
-                                </p>
-                                <div class="card-description" style="height: 125px;font-size: 16px">
-                                    <p style="font-size: 16px"><strong
-                                                style="font-size: 16px">Descrição:</strong> <?= $treinos[$i]->descricao ?>
-                                    </p>
-                                </div>
                             </div>
-                            <div style="text-align: right">
-                                <?=Html::submitButton('Visualizar Exercicios', ['class' => 'btn btn-success',  'style' => 'background-color: #9BC1BC; border: none; color:#000000']);?>
-                            </div>
+                        </div>
+                        <div style="text-align: right">
+                            <?= Html::submitButton('Visualizar Exercicios', ['class' => 'btn btn-success', 'style' => 'background-color: #9BC1BC1; color:#000000']); ?>
                         </div>
                     </div>
                 </div>
-                <?=Html::endForm(); ?>
-            <?php };
-
-            ?>
-        </div>
+            </div>
+            <?= Html::endForm(); ?>
+        <?php }
+        } else { ?>
+           <div style="text-align: center">
+               <h2> Não existem Treinos disponiveis</h2>
+           </div>
+        <?php }
+        ?>
     </div>
+</div>
 </div>
