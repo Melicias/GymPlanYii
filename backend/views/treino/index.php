@@ -48,13 +48,13 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute'=>'id_categoria',
-                'filter'=>ArrayHelper::map(Categoria::find()->asArray()->all(), 'id_categoria', 'nome'),
+                'filter'=>ArrayHelper::map(Categoria::find()->asArray()->orderBy('nome')->all(), 'id_categoria', 'nome'),
                 'value' =>function($model){  return Treino::getCategoriaName($model->id_categoria);},
                 'contentOptions'=>['style'=>'text-align:center;vertical-align: middle;']
             ],
             [
                 'attribute'=>'id_dificuldade',
-                'filter'=>ArrayHelper::map(Dificuldade::find()->asArray()->all(), 'id_dificuldade', 'dificuldade'),
+                'filter'=>ArrayHelper::map(Dificuldade::find()->asArray()->orderBy('dificuldade')->all(), 'id_dificuldade', 'dificuldade'),
                 'value' =>function($model){  return Treino::getDificuldadeDificuldade($model->id_dificuldade);},
                 'contentOptions'=>['style'=>'text-align:center;vertical-align: middle;']
             ],

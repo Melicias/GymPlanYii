@@ -28,7 +28,7 @@ $this->title = 'GymPlan';
         </div>
         <div class="col-md-4 col-sm-6">
             <?= $form->field($searchModel, 'id_categoria')->dropDownList(
-                ArrayHelper::map(Categoria::find()->asArray()->all(), 'id_categoria', 'nome'), ['prompt' => '']) ?>
+                ArrayHelper::map($categorias, 'id_categoria', 'nome'), ['prompt' => '']) ?>
         </div>
         <div class="col-sm-6 col-md-1">
             <br>

@@ -93,8 +93,8 @@ class SiteController extends Controller
             $searchModel->load(Yii::$app->request->post());
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-            $categorias = Categoria::find()->all();
-            $dificuldades = Dificuldade::find()->all();
+            $categorias = Categoria::find()->orderBy('nome')->all();
+            $dificuldades = Dificuldade::find()->orderBy('dificuldade')->all();
 
             return $this->render('index', [
                 'categorias' => $categorias,
@@ -123,6 +123,7 @@ class SiteController extends Controller
             return $this->goBack();
         } else {
             $model->password = '';
+
 
             return $this->render('login', [
                 'model' => $model,

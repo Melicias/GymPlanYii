@@ -35,6 +35,8 @@ class LoginForm extends Model
 
         ['password', 'required'],
         ['password', 'string'],
+        // password is validated by validatePassword()
+        ['password', 'validatePassword'],
     ];
     }
 
@@ -65,7 +67,9 @@ class LoginForm extends Model
         if ($this->validate()) {
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
         }
-        
+        if(User::findOne(['email' => $this->email])->status != 10){
+            $this->addError('email', 'O seu email foi bloqueado, se achas que foi um mal entendido contacte a staff');
+        }
         return false;
     }
 
