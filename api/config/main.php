@@ -62,11 +62,11 @@ return [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'user',
                     'extraPatterns' => [
-                        'GET user' => 'user',
+                        'GET login' => 'login',
+                        'POST signup' => 'signup',
                     ]
                 ],
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'userupdate'],
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'usercreate'],
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'zona-exercicio'],
             ],
         ],
