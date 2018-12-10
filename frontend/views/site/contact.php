@@ -16,16 +16,12 @@ $this->params['breadcrumbs'][] = $this->title;
     </h1>
 
     <div class="row">
-        <div class="asd"  style="text-align: center">
-            <div class="" style="text-align: center">
-
-        <br>
-             <?php  foreach ($admins as $admin){
-                  echo " <b><h3>".$admin->primeiroNome. ' '. $admin->ultimoNome. "</b></h4>".'  '. $admin->email ;?>
-                 <br><br><br>
-             <?php }  ?>
-            </div>
+        <?php
+        foreach ($admins as $admin){ ?>
+        <div class="body-content col-sm-4 col-md-3">
+            <b><h3><?=$admin->primeiroNome?> <?=$admin->ultimoNome?></b></h4><?=$admin->email?>
         </div>
+        <?php }  ?>
     </div>
 
 </div>

@@ -4,10 +4,9 @@ namespace frontend\controllers;
 use common\models\Admin;
 use common\models\Categoria;
 use common\models\Dificuldade;
-use common\models\Exercicio;
-use common\models\ExercicioSearch;
 use common\models\Treino;
 use common\models\TreinoSearch;
+use common\models\User;
 use frontend\models\AccountForm;
 use frontend\models\PanelWidget;
 use frontend\models\ShowExerciciosForm;
@@ -23,7 +22,6 @@ use common\models\LoginForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
-use frontend\models\ContactForm;
 
 /**
  * Site controller
@@ -38,7 +36,7 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout', 'signup'],
+                'only' => ['logout', 'signup','visualizar-treino','account'],
                 'rules' => [
                     [
                         'actions' => ['signup'],
@@ -46,7 +44,7 @@ class SiteController extends Controller
                         'roles' => ['?'],
                     ],
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['logout','visualizar-treino','account'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -56,6 +54,11 @@ class SiteController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'logout' => ['post'],
+                    'index' => ['get'],
+                    'login' => ['post','get'],
+                    'contact' => ['get'],
+                    'about' => ['get'],
+                    'signup' => ['get','post'],
                 ],
             ],
         ];
@@ -198,12 +201,26 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionAccount(){
+    /*public function actionAccount(){
         $model = new AccountForm();
         return $this->render('account', [
             'model' => Yii::$app->user->identity,
         ]);
+    }*/
+
+    public function actionAccount(){
+        $user = User::findIdentity(Yii::$app->user->id);
+        if($user->load(Yii::$app->request->post())){
+            $user->save();
+            return $this->render('account', [
+                'model' => $user,
+            ]);
+        }
+        return $this->render('account', [
+            'model' => Yii::$app->user->identity,
+        ]);
     }
+
     public function actionShowExercicios()
     {
         $treinos = Treino::find()->all();
@@ -212,6 +229,7 @@ class SiteController extends Controller
 
         ]);
     }
+
     public function actionPanelWidget()
     {
         $model = new PanelWidget();

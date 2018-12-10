@@ -41,5 +41,10 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ],
     ]) ?>
+    <p>Preview da Foto: </p>
+    <object class=".img-responsive" height="250px" width="350px" data="<?=$model->foto;?>" type="image/png" style="">
+        <img src="https://dubsism.files.wordpress.com/2017/12/image-not-found.png" height="250px" width="300px" alt="Imagem não disponivel" style="">
+    </object>
+
 
 </div>
