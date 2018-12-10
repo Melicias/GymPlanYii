@@ -18,6 +18,7 @@ class UserupdateController extends ActiveController
     {
         return [
             'update' => ['PUT', 'PATCH'],
+            'status' => ['GET','POST'],
         ];
     }
 
@@ -28,6 +29,12 @@ class UserupdateController extends ActiveController
             'class' => QueryParamAuth::className()
         ];
         return $behaviors;
+    }
+
+    public function actionStatus(){
+        $token = Yii::$app->request->get('access-token');
+        $user = User::findIdentityByAccessToken($token);
+        return $user;
     }
 
 }

@@ -67,9 +67,12 @@ class LoginForm extends Model
         if ($this->validate()) {
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
         }
-        if(User::findOne(['email' => $this->email])->status != 10){
-            $this->clearErrors();
-            $this->addError('email', 'O seu email foi bloqueado, se achas que foi um mal entendido contacte a staff');
+        $user = User::findOne(['email' => $this->email]);
+        if($user != null) {
+            if ($user->status != 10) {
+                $this->clearErrors();
+                $this->addError('email', 'O seu email foi bloqueado, se achas que foi um mal entendido contacte a staff');
+            }
         }
         return false;
     }

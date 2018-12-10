@@ -66,7 +66,13 @@ return [
                         'POST signup' => 'signup',
                     ]
                 ],
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'userupdate'],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'userupdate',
+                    'extraPatterns' => [
+                        'GET status' => 'status',
+                    ]
+                ],
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'zona-exercicio'],
             ],
         ],
