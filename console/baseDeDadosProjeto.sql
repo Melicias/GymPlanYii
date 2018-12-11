@@ -49,8 +49,8 @@ CREATE TABLE if not exists treino (
     id_categoria int(2) NOT NULL ,
     id_dificuldade int(2) NOT NULL,
     repeticoes int(2) NOT NULL,
-    FOREIGN Key (id_categoria) REFERENCES Categoria(id_categoria),
-	FOREIGN Key (id_dificuldade) REFERENCES Dificuldade(id_dificuldade)
+    FOREIGN Key (id_categoria) REFERENCES categoria(id_categoria),
+	FOREIGN Key (id_dificuldade) REFERENCES dificuldade(id_dificuldade)
 ); SET default_storage_engine=InnoDB;
 
 CREATE TABLE if not exists zona_exercicio (
@@ -73,8 +73,8 @@ CREATE TABLE if not exists treino_exercicio(
 	id int(7) NOT NULL PRIMARY KEY auto_increment,
     id_treino int(5) NOT NULL,
     id_exercicio int(5) NOT NULL,
-	FOREIGN Key (id_exercicio) REFERENCES Exercicio(id_exercicio),
-	FOREIGN Key (id_treino) REFERENCES Treino(id_treino)
+	FOREIGN Key (id_exercicio) REFERENCES exercicio(id_exercicio),
+	FOREIGN Key (id_treino) REFERENCES treino(id_treino)
 ); SET default_storage_engine=InnoDB;
 
 INSERT INTO `admin` (`primeiroNome`,`ultimoNome`, `email`, `auth_key`, `password_hash`, `password_reset_token`, `status`, `created_at`, `updated_at`) VALUES
