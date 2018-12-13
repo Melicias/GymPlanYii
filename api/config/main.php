@@ -56,6 +56,7 @@ return [
                     'controller' => 'treino',
                     'extraPatterns' => [
                         'GET exercicios' => 'exercicios',
+                        'GET exercicioscd' => 'exercicioscd',
                     ]
                 ],
                 [
