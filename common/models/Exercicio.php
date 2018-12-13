@@ -43,7 +43,7 @@ class Exercicio extends \yii\db\ActiveRecord
             }"],
             [['repeticoes', 'tempo', 'id_zona'], 'integer'],
             [['foto'], 'string', 'max' => 200],
-            [['nome'], 'string', 'max' => 25],
+            [['nome'], 'string', 'max' => 50],
             [['descricao'], 'string', 'max' => 250],
             [['id_zona'], 'exist', 'skipOnError' => true, 'targetClass' => ZonaExercicio::className(), 'targetAttribute' => ['id_zona' => 'id_zona']],
         ];
