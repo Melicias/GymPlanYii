@@ -118,7 +118,11 @@ class ExercicioController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $exercicio = $this->findModel($id);
+        foreach ($exercicio->treinos as $treino) {
+            $treino->unlink('exercicios', $exercicio, true);
+        }
+        $exercicio->delete();
 
         return $this->redirect(['index']);
     }
