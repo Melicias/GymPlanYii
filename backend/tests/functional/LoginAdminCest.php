@@ -36,9 +36,26 @@ class LoginAdminCest
         ]);
 
         $I->seeRecord('common\models\Admin', [
-            'primeiroNome' => 'asd',
-            'ultimoNome' => 'asd',
-            'email' => 'teste@teste.com',
+            'primeiroNome' => 'Francisco',
+            'ultimoNome' => 'Melicias',
+            'email' => 'melicias1999@gmail.com',
+
+        ]);
+
+        $I->see('Login', 'form button[type=submit]');
+    }
+    public function AdminBlocked(FunctionalTester $I)
+    {
+        $I->submitForm($this->formId, [
+            'login-form[email]' => 'test@test.com',
+            'login-form[password]' => 'asdqwe123',
+        ]);
+
+        $I->seeRecord('common\models\Admin', [
+            'primeiroNome' => 'TesteNome',
+            'ultimoNome' => 'TesteApelido',
+            'email' => 'test@test.com',
+            'status' => '10', //Bloqueado ou Desbloqueado
 
         ]);
 
