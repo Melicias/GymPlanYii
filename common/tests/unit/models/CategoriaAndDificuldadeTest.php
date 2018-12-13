@@ -1,4 +1,5 @@
-<?php namespace common\tests\models;
+<?php
+namespace common\tests\models;
 
 use common\models\Categoria;
 use common\models\Dificuldade;
