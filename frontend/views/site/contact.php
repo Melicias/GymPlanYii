@@ -5,11 +5,13 @@
 /* @var $model \frontend\models\ContactForm */
 
 use yii\helpers\Html;
+use yii\widgets\ActiveForm;
 
 $this->title = 'Contact';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-contact"  style="text-align: center">
+    <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
 
     <h1>
        Contactos de todos os Personal Trainers:
@@ -23,5 +25,5 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <?php }  ?>
     </div>
-
+    <?php ActiveForm::end(); ?>
 </div>

@@ -34,18 +34,23 @@ class SignupCest
         $I->submitForm($this->formId, [
             'SignupForm[primeiroNome]' => 'Goncalo',
             'SignupForm[ultimoNome]' => 'Amaro',
+            'SignupForm[dataNascimento]' => '15-07-1999',
             'SignupForm[email]' => 'goncalo.amaro@example.com',
+            'SignupForm[altura]' => '1.50',
+            'SignupForm[peso]' => '65',
+            'SignupForm[sexo]' => '1',
             'SignupForm[password]' => 'test_password',
         ]);
 
         $I->seeRecord('common\models\User', [
             'primeiroNome' => 'Goncalo',
             'ultimoNome' => 'Amaro',
-            'sexo' => '1',
             'dataNascimento' => '15-07-1999',
+            'email' => 'goncalo.amaro@example.com',
             'altura' => '1.50',
             'peso' => '65',
-            'email' => 'goncalo.amaro@example.com',
+            'sexo' => '1',
+
         ]);
 
         $I->see('Logout (tester)', 'form button[type=submit]');
