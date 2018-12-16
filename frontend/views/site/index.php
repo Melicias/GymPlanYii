@@ -49,15 +49,15 @@ $this->title = 'GymPlan';
             <div class="body-content col-sm-6 col-md-4">
                 <div class="thumbnail">
                     <div class="caption">
-                        <h1 style="text-align: center"> <?= $treinos[$i]->nome ?></h1>
+                        <h2 style="height: 70px;text-align: center"> <?= $treinos[$i]->nome ?></h2>
                         <div style="padding-left: 20px">
                             <p class="card-description" style="font-size: 16px"><strong style="font-size: 18px">Dificuldade:</strong> <?=$treinos[$i]->dificuldade->dificuldade ?>
                             </p>
                             <p class="card-description" style="font-size: 16px"><strong style="font-size: 18px">Categoria:</strong> <?= $treinos[$i]->categoria->nome ?>
                             </p>
                             <div class="card-description" style="height: 125px;font-size: 16px">
-                                <p style="font-size: 16px"><strong
-                                            style="font-size: 16px">Descrição:</strong> <?= $treinos[$i]->descricao ?>
+                                <p style="font-size: 16px">
+                                    <strong style="font-size: 16px">Descrição:</strong> <?= $treinos[$i]->descricao ?>
                                 </p>
                             </div>
                         </div>

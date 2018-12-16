@@ -39,7 +39,7 @@ class UserController extends ActiveController
         $user->primeiroNome = Yii::$app->request->post('primeiroNome');
         $user->ultimoNome = Yii::$app->request->post('ultimoNome');
         $user->email = Yii::$app->request->post('email');
-        $user->dataNascimento = Date("Y-m-d h:i:s", strtotime( Yii::$app->request->post('data')));
+        $user->dataNascimento = Date("Y-m-d H:i:s", strtotime( Yii::$app->request->post('data')));
         $user->peso =  Yii::$app->request->post('peso');
         $user->altura =  Yii::$app->request->post('altura');
         $user->sexo = Yii::$app->request->post('sexo');

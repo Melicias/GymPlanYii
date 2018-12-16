@@ -6,7 +6,7 @@ CREATE TABLE if not exists user (
     id int(5) NOT NULL PRIMARY KEY auto_increment,
     primeiroNome varchar(25) NOT NULL,
     ultimoNome varchar(25) NOT NULL,
-    dataNascimento timestamp NOT NULL ,
+    dataNascimento DATETIME NOT NULL ,
     altura decimal(4,2) NOT NULL ,
     peso decimal(5,3) NOT NULL,
     sexo tinyint(1) NOT NULL,
