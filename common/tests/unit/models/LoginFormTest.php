@@ -54,9 +54,9 @@ class LoginFormTest extends \Codeception\Test\Unit
     public function testLoginCorrect()
     {
         $model = new LoginForm([
-            'primeiroNome' => 'Gonçalo',
-            'ultimoNome' => 'Amaro',
-            'password' => 'asdqwe123',
+            'primeiroNome' => 'Francisco',
+            'ultimoNome' => 'Melicias',
+            'password' => 'melicias',
         ]);
 
         expect('User Logged in!', $model->login())->true();
