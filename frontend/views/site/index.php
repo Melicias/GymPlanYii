@@ -53,7 +53,7 @@ $this->title = 'GymPlan';
                         <div style="padding-left: 20px">
                             <p class="card-description" style="font-size: 16px"><strong style="font-size: 18px">Dificuldade:</strong> <?=$treinos[$i]->dificuldade->dificuldade ?>
                             </p>
-                            <p class="card-description" style="font-size: 16px"><strong style="font-size: 18px">Categoria:</strong> <?= $treinos[$i]->categoria->nome ?>
+                            <p class="card-description" style="height: 55px;font-size: 16px"><strong style="font-size: 18px">Categoria:</strong> <?= $treinos[$i]->categoria->nome ?>
                             </p>
                             <div class="card-description" style="height: 125px;font-size: 16px">
                                 <p style="font-size: 16px">
