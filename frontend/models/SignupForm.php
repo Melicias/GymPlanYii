@@ -39,7 +39,7 @@ class SignupForm extends Model
                 ['dataNascimento'],
                 'validateUserBirthDate'
             ],
-            ['dataNascimento', 'date' ,'format' => 'php:d-m-Y', 'message' => 'The Format is DD-MM-YYYY'],
+            ['dataNascimento', 'date' ,'format' => 'php:d-m-Y', 'message' => 'The Format is dd-mm-aaaa'],
 
             ['altura', 'number', 'min' => 1.00, 'max' => 2.50],
             ['peso', 'required'],
@@ -65,9 +65,10 @@ class SignupForm extends Model
         $minAgeDate = date_format($date, 'Y-m-d');
         date_sub($date, date_interval_create_from_date_string('122 years'));
         $maxAgeDate = date_format($date, 'Y-m-d');
-        if ($this->$attribute > $minAgeDate) {
+        $d = Date("Y-m-d H:i:s", strtotime($this->dataNascimento));
+        if ($d > $minAgeDate) {
             $this->addError($attribute, 'Deveras ter mais que 12 anos.');
-        } elseif ($this->$attribute < $maxAgeDate) {
+        } elseif ($d < $maxAgeDate) {
             $this->addError($attribute, '122 anos e 164 dias - esta é a idade da pessoa mais velha do mundo, se tens mais que esta idade contacta a nossa staff');
         }
     }
