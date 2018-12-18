@@ -4,6 +4,8 @@ namespace api\controllers;
 
 use common\models\Categoria;
 use common\models\Dificuldade;
+use common\models\Treino;
+use Yii;
 use yii\rest\ActiveController;
 use yii\filters\auth\QueryParamAuth;
 
@@ -44,6 +46,14 @@ class TreinoController extends ActiveController
         foreach($recs as $treino){
             $arr[] = ['treino' => $treino,'categoria' => Categoria::findOne(['id_categoria' => $treino->id_categoria]),'dificuldade' => Dificuldade::findOne(['id_dificuldade' => $treino->id_dificuldade]),'exercicios' => $treino->exercicios];
         }
+        return $arr;
+    }
+
+    public function actionExercicioscdbyid()
+    {
+        $treino = Treino::findOne(['id_treino' => Yii::$app->request->get('id')]);
+        $arr = [];
+        $arr[] = ['treino' => $treino,'categoria' => Categoria::findOne(['id_categoria' => $treino->id_categoria]),'dificuldade' => Dificuldade::findOne(['id_dificuldade' => $treino->id_dificuldade]),'exercicios' => $treino->exercicios];
         return $arr;
     }
 }
