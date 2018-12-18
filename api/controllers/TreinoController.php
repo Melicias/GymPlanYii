@@ -51,9 +51,13 @@ class TreinoController extends ActiveController
 
     public function actionExercicioscdbyid()
     {
-        $treino = Treino::findOne(['id_treino' => Yii::$app->request->get('id')]);
-        $arr = [];
-        $arr[] = ['treino' => $treino,'categoria' => Categoria::findOne(['id_categoria' => $treino->id_categoria]),'dificuldade' => Dificuldade::findOne(['id_dificuldade' => $treino->id_dificuldade]),'exercicios' => $treino->exercicios];
-        return $arr;
+        $ids_treinos = Yii::$app->request->post();
+        $treinos = [];
+        foreach ($ids_treinos as $id_treino){
+            $treino = Treino::findOne(['id_treino' => $id_treino]);
+            if($treino != null)
+                $treinos[] = ['treino' => $treino,'categoria' => Categoria::findOne(['id_categoria' => $treino->id_categoria]),'dificuldade' => Dificuldade::findOne(['id_dificuldade' => $treino->id_dificuldade]),'exercicios' => $treino->exercicios];
+        }
+        return $treinos;
     }
 }

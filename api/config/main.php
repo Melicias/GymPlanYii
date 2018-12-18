@@ -57,7 +57,7 @@ return [
                     'extraPatterns' => [
                         'GET exercicios' => 'exercicios',
                         'GET exercicioscd' => 'exercicioscd',
-                        'GET exercicioscdbyid' => 'exercicioscdbyid',
+                        'POST exercicioscdbyid' => 'exercicioscdbyid',
                     ]
                 ],
                 [
