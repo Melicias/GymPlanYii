@@ -31,7 +31,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'id_exercicio',
             //'foto',
             'nome',
-            'descricao',
+            [
+                'attribute'=>'descricao',
+                'format'=>'raw',
+                'value'=>function($data){
+                    return wordwrap($data->descricao,60,'<br>');
+                },
+                'contentOptions'=>['style'=>'max-width: 400px;']
+            ],
             [
                 'attribute'=>'id_zona',
                 'filter'=>ArrayHelper::map(ZonaExercicio::find()->asArray()->all(), 'id_zona', 'nome'),

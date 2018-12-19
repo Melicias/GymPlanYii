@@ -28,8 +28,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            //['class' => 'yii\grid\SerialColumn'],
-
             [
                 'attribute'=>'id_treino',
                 'contentOptions'=>['style'=>'vertical-align: middle;']
