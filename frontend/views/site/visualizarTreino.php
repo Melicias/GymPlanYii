@@ -31,7 +31,7 @@ $this->title = 'GymPlan';
                             <div class="caption">
                                 <h3 style="text-align: center"><?=$model->exercicios[$i]->nome;?></h3>
                                 <p class="card-description"><strong>Zona de treino: </strong><?=$model->exercicios[$i]->getZonaNameInExercicio();?></p>
-                                <p class="card-description"><?=$model->exercicios[$i]->descricao;?></p>
+                                <p class="card-description" style="height: 80px;"><?=$model->exercicios[$i]->descricao;?></p>
                                 <?php
                                 if($model->exercicios[$i]->tempo != null){
                                     ?>
