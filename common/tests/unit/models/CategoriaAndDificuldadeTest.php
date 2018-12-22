@@ -24,18 +24,33 @@ class CategoriaAndDificuldadeTest extends \Codeception\Test\Unit
     {
         $categoria = new Categoria();
 
-        $categoria-> nome = '0123456789012345678901234567890';
+        $categoria-> nome = 'verificacaoDe31CaracteresSeTemMaisDaErro';
         $this->assertFalse($categoria->validate(['nome']));
 
         $categoria->nome = 'Pernas';
+        $this->assertFalse($categoria->validate(['nome']));
+
+        $categoria->nome = 'Abdominal';
+        $this->assertFalse($categoria->validate(['nome']));
+
+        $categoria->nome = 'Abdominal 2';
         $this->assertTrue($categoria->validate(['nome']));
+
+        $categoria->nome = '';
+        $this->assertFalse($categoria->validate(['nome']));
 
         $dificuldade = new Dificuldade();
 
         $dificuldade-> dificuldade = -2;
         $this->assertFalse($dificuldade->validate(['dificuldade']));
 
-        $dificuldade-> dificuldade = 1; //error caused by DB already has dificuldade 1
+        $dificuldade-> dificuldade = 2;
+        $this->assertFalse($dificuldade->validate(['dificuldade']));
+
+        $dificuldade-> dificuldade = 11;
+        $this->assertFalse($dificuldade->validate(['dificuldade']));
+
+        $dificuldade-> dificuldade = 10;
         $this->assertTrue($dificuldade->validate(['dificuldade']));
 
     }

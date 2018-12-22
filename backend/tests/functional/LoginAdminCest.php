@@ -15,6 +15,8 @@ class LoginAdminCest
 
     public function LoginCorrect(FunctionalTester $I)
     {
+        $I->see('Login', 'form button[type=submit]');
+
         $I->submitForm($this->formId, [
             'login-form[email]' => 'melicias1999@gmail.com',
             'login-form[password]' => 'jayson',
@@ -26,37 +28,37 @@ class LoginAdminCest
             'email' => 'melicias1999@gmail.com',
         ]);
 
+        $I->fillField('#adminloginform-email', 'melicias1999@gmail.com');
+        $I->fillField('#adminloginform-password', 'jayson');
+        $I->click('Login');
+
+    }
+
+    public function WrongPassword(FunctionalTester $I)
+    {
+        $I->submitForm($this->formId, [
+            'login-form[email]' => 'teste@teste.teste',
+            'login-form[password]' => 'melicias',
+        ]);
+
         $I->see('Login', 'form button[type=submit]');
     }
-    public function WrongEmailOrPassword(FunctionalTester $I)
+
+    public function WrongEmail(FunctionalTester $I)
     {
         $I->submitForm($this->formId, [
             'login-form[email]' => 'teste@teste.com',
-            'login-form[password]' => 'teste',
-        ]);
-
-        $I->seeRecord('common\models\Admin', [
-            'primeiroNome' => 'Francisco',
-            'ultimoNome' => 'Melicias',
-            'email' => 'melicias1999@gmail.com',
-
+            'login-form[password]' => 'melicias',
         ]);
 
         $I->see('Login', 'form button[type=submit]');
     }
+
     public function AdminBlocked(FunctionalTester $I)
     {
         $I->submitForm($this->formId, [
-            'login-form[email]' => 'test@test.com',
+            'login-form[email]' => 'teste@teste.teste',
             'login-form[password]' => 'asdqwe123',
-        ]);
-
-        $I->seeRecord('common\models\Admin', [
-            'primeiroNome' => 'TesteNome',
-            'ultimoNome' => 'TesteApelido',
-            'email' => 'test@test.com',
-            'status' => '10', //Bloqueado ou Desbloqueado
-
         ]);
 
         $I->see('Login', 'form button[type=submit]');

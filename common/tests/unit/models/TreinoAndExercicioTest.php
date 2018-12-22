@@ -34,14 +34,33 @@ class TreinoAndExercicioTest extends \Codeception\Test\Unit
         $treino->nome = 'Treino Macho';
         $this->assertTrue($treino->validate(['nome']));
 
+        $treino->nome = 'NomeDoTreinoMuitoLongooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo';
+        $this->assertFalse($treino->validate(['nome']));
+
         $treino->descricao = 'asdasdsadas';
         $this->assertTrue($treino->validate(['descricao']));
+
+        $treino->repeticoes = null;
+        $this->assertFalse($treino->validate(['repeticoes']));
+
+        $treino->repeticoes = 'aa';
+        $this->assertFalse($treino->validate(['repeticoes']));
+
+        $treino->repeticoes = 10;
+        $this->assertTrue($treino->validate(['repeticoes']));
 
 
         $exercicio = new Exercicio();
 
+
         $exercicio->nome = null;
         $this->assertFalse($exercicio->validate(['nome']));
+
+        $exercicio->nome = 'NomeMuitoLongooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo';
+        $this->assertFalse($exercicio->validate(['nome']));
+
+        $exercicio->nome = 'Nome normal';
+        $this->assertTrue($exercicio->validate(['nome']));
 
         $exercicio->foto = null;
         $this->assertFalse($exercicio->validate(['foto']));
@@ -51,6 +70,15 @@ class TreinoAndExercicioTest extends \Codeception\Test\Unit
 
         $exercicio->repeticoes = null;
         $this->assertFalse($exercicio->validate(['repeticoes']));
+
+        $exercicio->tempo = 60;
+        $this->assertTrue($exercicio->validate(['tempo']));
+
+        $exercicio->id_zona = -1;
+        $this->assertFalse($exercicio->validate(['id_zona']));
+
+        $exercicio->id_zona = 1;
+        $this->assertTrue($exercicio->validate(['id_zona']));
 
         //if you insert assertFalse to Tempo, it will return error because repeticoes and tempo can't be both null!!!
 

@@ -21,20 +21,29 @@ class ZonaExercicioTest extends \Codeception\Test\Unit
 
     public function testWrongZona()
     {
-        $zona_exercicio = new ZonaExercicio([
-            'nome' => 'A'
-        ]);
+        $zona_exercicio = new ZonaExercicio();
 
-        expect('Incorrect Zona', $zona_exercicio->errors);
+
+        $zona_exercicio->nome = null;
+        $this->assertFalse($zona_exercicio->validate(['nome']));
+
+        $zona_exercicio->nome = 'a';
+        $this->assertFalse($zona_exercicio->validate(['nome']));
+
+        $zona_exercicio->nome = 'NomeMuitoLongoooooooooooooooooooooo';
+        $this->assertFalse($zona_exercicio->validate(['nome']));
+
+        $zona_exercicio->nome = 'Abs';
+        $this->assertFalse($zona_exercicio->validate(['nome']));
 
     }
 
     public function testCorrectZona()
     {
-        $zona_exercicio = new ZonaExercicio([
-            'nome' => 'Pernas',
-        ]);
+        $zona_exercicio = new ZonaExercicio();
 
-        expect('Created Zona', $zona_exercicio->validate('nome'));
+
+        $zona_exercicio->nome = 'Nome que nao existe';
+        $this->assertTrue($zona_exercicio->validate(['nome']));
     }
 }

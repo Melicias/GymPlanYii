@@ -4,7 +4,6 @@ namespace common\tests\unit\models;
 
 use Yii;
 use common\models\LoginForm;
-use common\fixtures\UserFixture;
 
 /**
  * Login form test
@@ -17,48 +16,56 @@ class LoginFormTest extends \Codeception\Test\Unit
     protected $tester;
 
 
-    /**
-     * @return array
-     */
-    public function _fixtures()
-    {
-        return [
-            'user' => [
-                'class' => UserFixture::className(),
-                'dataFile' => codecept_data_dir() . 'user.php'
-            ]
-        ];
-    }
-
     public function testNoUser()
     {
         $model = new LoginForm([
-            'primeiroNome' => 'not_existing_username',
-            'ultimoNome' => 'not_existing_password',
+            'email' => 'not_existing_email@gmail.com',
+            'password' => 'not_existing_password',
         ]);
 
         expect('Error', $model->login())->false();
         expect('User should not be logged in', Yii::$app->user->isGuest)->true();
     }
 
+    public function testExistUser()
+    {
+        $model = new LoginForm([
+            'email' => 'melicias1999@gmail.com',
+            'password' => 'melicias',
+        ]);
+
+        expect('Error', $model->login())->true();
+        expect('User should be logged in', Yii::$app->user->isGuest)->false();
+    }
+
     public function testWrongPassword()
     {
         $model = new LoginForm([
-            'password' => ''
+            'password' => '',
+            'email' => 'melicias1999@gmail.com',
         ]);
 
-        expect('Incorrect Password', $model->errors)->hasKey('password');
+        expect('Incorrect Password', $model->errors);
 
     }
 
     public function testLoginCorrect()
     {
         $model = new LoginForm([
-            'primeiroNome' => 'Francisco',
-            'ultimoNome' => 'Melicias',
+            'email' => 'melicias1999@gmail.com',
             'password' => 'melicias',
         ]);
 
         expect('User Logged in!', $model->login())->true();
+    }
+
+    public function testLoginIncorrect()
+    {
+        $model = new LoginForm([
+            'email' => 'melicias1999@gmail.com',
+            'password' => 'meliciassssss',
+        ]);
+
+        expect('User Logged in!', $model->login())->false();
     }
 }
