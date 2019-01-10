@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="row">
         <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => '']); ?>
+            <?php $form = ActiveForm::begin(['id' => 'changeuser']); ?>
 
             <?= $form->field($model, 'primeiroNome')->textInput(['maxlength' => true]) ?>
 

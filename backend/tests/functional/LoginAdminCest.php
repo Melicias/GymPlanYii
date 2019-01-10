@@ -31,7 +31,6 @@ class LoginAdminCest
         $I->fillField('#adminloginform-email', 'melicias1999@gmail.com');
         $I->fillField('#adminloginform-password', 'jayson');
         $I->click('Login');
-
     }
 
     public function WrongPassword(FunctionalTester $I)
