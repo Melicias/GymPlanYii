@@ -2,6 +2,8 @@
 
 namespace backend\controllers;
 
+use common\models\Categoria;
+use common\models\Dificuldade;
 use common\models\ExercicioSearch;
 use common\models\ExerciciosNotOnTreinoSearch;
 use Yii;
@@ -12,6 +14,8 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
 
 /**
  * TreinoController implements the CRUD actions for Treino model.
@@ -94,8 +98,13 @@ class TreinoController extends Controller
             return $this->redirect(['view', 'id' => $model->id_treino]);
         }
 
+        $modelDif = new Dificuldade();
+        $modelCat = new Categoria();
+
         return $this->render('create', [
             'model' => $model,
+            'modelDif' => $modelDif,
+            'modelCat' => $modelCat,
         ]);
     }
 
@@ -114,8 +123,13 @@ class TreinoController extends Controller
             return $this->redirect(['view', 'id' => $model->id_treino]);
         }
 
+        $modelDif = new Dificuldade();
+        $modelCat = new Categoria();
+
         return $this->render('update', [
             'model' => $model,
+            'modelDif' => $modelDif,
+            'modelCat' => $modelCat,
         ]);
     }
 
@@ -179,5 +193,65 @@ class TreinoController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function actionSavedificuldade()
+    {
+        $model = new Dificuldade();
+        $request = \Yii::$app->getRequest();
+        if ($request->isPost && $model->load($request->post())) {
+            \Yii::$app->response->format = Response::FORMAT_JSON;
+            $model->save();
+            return ['success' => $model];
+        }
+
+        $model = new Treino();
+        $modelDif = new Dificuldade();
+
+        return $this->render('create', [
+            'model' => $model,
+            'modelDif' => $modelDif,
+        ]);
+    }
+
+    public function actionValidatedificuldade()
+    {
+        $model = new Dificuldade();
+        $request = \Yii::$app->getRequest();
+        if ($request->isPost && $model->load($request->post())) {
+            \Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
+    }
+
+    public function actionSavecategoria()
+    {
+        $model = new Categoria();
+        $request = \Yii::$app->getRequest();
+        if ($request->isPost && $model->load($request->post())) {
+            \Yii::$app->response->format = Response::FORMAT_JSON;
+            $model->save();
+            return ['success' => $model];
+        }
+
+        $model = new Treino();
+        $modelDif = new Dificuldade();
+        $modelCat = new Categoria();
+
+        return $this->render('create', [
+            'model' => $model,
+            'modelDif' => $modelDif,
+            'modelCat' => $modelCat,
+        ]);
+    }
+
+    public function actionValidatecategoria()
+    {
+        $model = new Categoria();
+        $request = \Yii::$app->getRequest();
+        if ($request->isPost && $model->load($request->post())) {
+            \Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
     }
 }
