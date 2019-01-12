@@ -6,7 +6,6 @@ use backend\tests\FunctionalTester;
 
 class LoginAdminCest
 {
-    protected $formId = '#login-form';
 
     public function _before(FunctionalTester $I)
     {
@@ -15,52 +14,45 @@ class LoginAdminCest
 
     public function LoginCorrect(FunctionalTester $I)
     {
-        $I->see('Login', 'form button[type=submit]');
+       $I->see('Login', 'form button[type=submit]');
 
-        $I->submitForm($this->formId, [
-            'login-form[email]' => 'melicias1999@gmail.com',
-            'login-form[password]' => 'jayson',
+        $I->submitForm('#login-form', [
+            'AdminLoginForm[email]' => 'melicias1999@gmail.com',
+            'AdminLoginForm[password]' => 'jayson',
         ]);
 
-        $I->seeRecord('common\models\Admin', [
-            'primeiroNome' => 'Francisco',
-            'ultimoNome' => 'Melicias',
-            'email' => 'melicias1999@gmail.com',
-        ]);
+        $I->see('Logout');
 
-        $I->fillField('#adminloginform-email', 'melicias1999@gmail.com');
-        $I->fillField('#adminloginform-password', 'jayson');
-        $I->click('Login');
     }
 
     public function WrongPassword(FunctionalTester $I)
     {
-        $I->submitForm($this->formId, [
-            'login-form[email]' => 'teste@teste.teste',
-            'login-form[password]' => 'melicias',
+        $I->submitForm('#login-form', [
+            'AdminLoginForm[email]' => 'teste@teste.teste',
+            'AdminLoginForm[password]' => 'meliciasdjfhgdkjfdk',
         ]);
 
-        $I->see('Login', 'form button[type=submit]');
+        $I->see('Incorrect email or password.');
     }
 
     public function WrongEmail(FunctionalTester $I)
     {
-        $I->submitForm($this->formId, [
-            'login-form[email]' => 'teste@teste.com',
-            'login-form[password]' => 'melicias',
+        $I->submitForm('#login-form', [
+            'AdminLoginForm[email]' => 'teste@teste.com',
+            'AdminLoginForm[password]' => 'melicias',
         ]);
 
-        $I->see('Login', 'form button[type=submit]');
+        $I->see('Incorrect email or password.');
     }
 
     public function AdminBlocked(FunctionalTester $I)
     {
-        $I->submitForm($this->formId, [
-            'login-form[email]' => 'teste@teste.teste',
-            'login-form[password]' => 'asdqwe123',
+        $I->submitForm('#login-form', [
+            'AdminLoginForm[email]' => 'teste2@teste.teste',
+            'AdminLoginForm[password]' => 'jayson',
         ]);
 
-        $I->see('Login', 'form button[type=submit]');
+        $I->see('O seu email foi bloqueado');
     }
 
 }

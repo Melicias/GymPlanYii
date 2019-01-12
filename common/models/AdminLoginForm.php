@@ -58,9 +58,9 @@ class AdminLoginForm extends Model
         if ($this->validate()) {
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
         }
-        $user = User::findOne(['email' => $this->email]);
-        if($user != null) {
-            if ($user->status != 10) {
+        $admin = Admin::findOne(['email' => $this->email]);
+        if($admin != null) {
+            if ($admin->status != 10) {
                 $this->clearErrors();
                 $this->addError('email', 'O seu email foi bloqueado, se achas que foi um mal entendido contacte um dos outros adminstradores');
             }
