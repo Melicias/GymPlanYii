@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use common\models\ZonaExercicio;
 use Yii;
 use common\models\Exercicio;
 use common\models\ExercicioSearch;
@@ -9,6 +10,8 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
 
 /**
  * ExercicioController implements the CRUD actions for Exercicio model.
@@ -79,13 +82,14 @@ class ExercicioController extends Controller
     public function actionCreate()
     {
         $model = new Exercicio();
-
+        $modelZona = new ZonaExercicio();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id_exercicio]);
         }
         return $this->render('create', [
             'model' => $model,
+            'modelZona' => $modelZona,
         ]);
     }
 
@@ -99,6 +103,7 @@ class ExercicioController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $modelZona = new ZonaExercicio();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id_exercicio]);
@@ -106,6 +111,7 @@ class ExercicioController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'modelZona' => $modelZona,
         ]);
     }
 
@@ -141,5 +147,34 @@ class ExercicioController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function actionSavezonaexercicio()
+    {
+        $model = new ZonaExercicio();
+        $request = \Yii::$app->getRequest();
+        if ($request->isPost && $model->load($request->post())) {
+            \Yii::$app->response->format = Response::FORMAT_JSON;
+            $model->save();
+            return ['success' => $model];
+        }
+
+        $model = new Exercicio();
+        $modelZona = new ZonaExercicio();
+
+        return $this->render('create', [
+            'model' => $model,
+            'modelZona' => $modelZona,
+        ]);
+    }
+
+    public function actionValidatezonaexercicio()
+    {
+        $model = new ZonaExercicio();
+        $request = \Yii::$app->getRequest();
+        if ($request->isPost && $model->load($request->post())) {
+            \Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
     }
 }

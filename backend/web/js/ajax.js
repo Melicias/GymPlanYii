@@ -41,3 +41,25 @@ $('#my-form-categoria').on('beforeSubmit', function(e) {
 }).on('submit', function(e){
     e.preventDefault();
 });
+
+$('#my-form-zonaexercicio').on('beforeSubmit', function(e) {
+    var form = $(this);
+    var formData = form.serialize();
+    $.ajax({
+        url: form.attr("action"),
+        type: form.attr("method"),
+        data: formData,
+        success: function (data) {
+            $(document).find('#myModalZonaexercicio').modal('hide');
+            console.log(data);
+            var option = new Option(data.success.nome + "", data.success.id_zona + "");
+            $(option).html(data.success.nome + "");
+            $("#exercicio-id_zona").append(option);
+        },
+        error: function () {
+            alert("Something went wrong");
+        }
+    });
+}).on('submit', function(e){
+    e.preventDefault();
+});

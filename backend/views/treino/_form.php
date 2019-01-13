@@ -23,7 +23,7 @@ use common\models\Dificuldade;
     <div class="row">
         <div class="col-xs-10">
             <?= $form->field($model, 'id_categoria')->dropDownList(
-                ArrayHelper::map(Categoria::find()->asArray()->all(), 'id_categoria', 'nome')) ?>
+                ArrayHelper::map(Categoria::find()->asArray()->orderBy('nome')->all(), 'id_categoria', 'nome')) ?>
         </div>
         <div class="col-xs-2">
             <br>

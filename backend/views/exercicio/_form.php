@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 use common\models\ZonaExercicio;
 
@@ -27,11 +28,11 @@ use common\models\ZonaExercicio;
     <div class="row">
         <div class="col-xs-10">
             <?= $form->field($model, 'id_zona')->dropDownList(
-                ArrayHelper::map(ZonaExercicio::find()->asArray()->all(), 'id_zona', 'nome')) ?>
+                ArrayHelper::map(ZonaExercicio::find()->asArray()->orderBy('nome')->all(), 'id_zona', 'nome')) ?>
         </div>
         <div class="col-xs-2">
             <br>
-            <?= Html::a('Criar Zonas exercicio', ['zona-exercicio/create'], ['class' => 'btn btn-success']) ?>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModalZonaexercicio">Criar Zonas exercicio</button>
         </div>
     </div>
 
@@ -42,5 +43,37 @@ use common\models\ZonaExercicio;
     </div>
 
     <?php ActiveForm::end(); ?>
+
+
+    <!-- Modal Categoria -->
+    <div class="modal fade" id="myModalZonaexercicio" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h1>Criar Categoria</h1>
+                </div>
+                <div class="modal-body">
+                    <?php $form = ActiveForm::begin([
+                        'id' => 'my-form-zonaexercicio',
+                        'action' => Url::toRoute('exercicio/savezonaexercicio'),
+                        'enableAjaxValidation' => true,
+                        'validationUrl' => Url::toRoute('exercicio/validatezonaexercicio')
+                    ]); ?>
+
+                    <?= $form->field($modelZona, 'nome', ['enableAjaxValidation' => true])->textInput(['maxlength' => true]) ?>
+
+                    <div class="form-group">
+                        <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
+                    </div>
+
+                    <?php ActiveForm::end(); ?>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
 </div>
