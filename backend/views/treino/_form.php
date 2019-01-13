@@ -45,7 +45,7 @@ use common\models\Dificuldade;
     <?= $form->field($model, 'repeticoes')->textInput() ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
@@ -71,7 +71,7 @@ use common\models\Dificuldade;
                     <?= $form->field($modelDif, 'dificuldade', ['enableAjaxValidation' => true])->textInput() ?>
 
                     <div class="form-group">
-                        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+                        <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
                     </div>
 
                     <?php ActiveForm::end(); ?>
@@ -102,7 +102,7 @@ use common\models\Dificuldade;
                     <?= $form->field($modelCat, 'nome', ['enableAjaxValidation' => true])->textInput(['maxlength' => true]) ?>
 
                     <div class="form-group">
-                        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+                        <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
                     </div>
 
                     <?php ActiveForm::end(); ?>

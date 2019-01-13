@@ -118,7 +118,15 @@ class ZonaExercicioController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $zona = $this->findModel($id);
+        foreach ($zona->exercicios as $exercicio) {
+            foreach ($exercicio->treinos as $treino) {
+                $treino->unlink('exercicios', $exercicio, true);
+            }
+            $exercicio->delete();
+        }
+
+        $zona->delete();
 
         return $this->redirect(['index']);
     }
