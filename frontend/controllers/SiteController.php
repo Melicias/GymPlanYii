@@ -10,6 +10,8 @@ use common\models\User;
 use frontend\models\AccountForm;
 use frontend\models\PanelWidget;
 use frontend\models\ShowExerciciosForm;
+use frontend\models\UserTreino;
+use frontend\models\UserTreinoSearch;
 use frontend\models\VisualizarForm;
 use Yii;
 use yii\base\InvalidParamException;
@@ -22,6 +24,7 @@ use common\models\LoginForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
+use yii\web\Response;
 
 /**
  * Site controller
@@ -135,11 +138,48 @@ class SiteController extends Controller
     }
 
     public function actionVisualizarTreino($id){
-        $model = Treino::findOne(['id_treino' => $id]);
 
-        return $this->render('visualizarTreino', [
-            'model' => $model
-        ]);
+        $model = Treino::findOne(['id_treino' => $id]);
+        //var_dump(Yii::$app->request->post('visualizarTreino'));
+        if(!is_null( Yii::$app->request->post('visualizarTreino'))){
+            return $this->render('visualizarTreino', [
+                'model' => $model
+            ]);
+        }
+        /*if(!is_null(Yii::$app->request->post('adicionarTreino'))){
+            echo "a";
+        }*/
+    }
+
+    public function actionRemoverTreino($id){
+
+        $request = \Yii::$app->getRequest();
+        $idTreino = $request->get('id');
+        $ut = UserTreino::findOne(['id_treino' => $idTreino,'id_user'=>Yii::$app->user->id]);
+        $ut->delete();
+        \Yii::$app->response->format = Response::FORMAT_JSON;
+        $treino = Treino::findOne(['id_treino' => $idTreino]);
+        return 'O treino ' . $treino->nome . ' foi removido com sucesso.';
+    }
+
+
+    public function actionAdicionarTreino($id){
+
+        $request = \Yii::$app->getRequest();
+        $idTreino = $request->get('id');
+        $ut = UserTreino::findOne(['id_treino' => $idTreino,'id_user'=>Yii::$app->user->id]);
+        $treino = Treino::findOne(['id_treino' => $idTreino]);
+        \Yii::$app->response->format = Response::FORMAT_JSON;
+        if($ut == null){
+            $ut = new UserTreino();
+            $ut->id_treino = $idTreino;
+            $ut->id_user = Yii::$app->user->id;
+            //$ut->load(['id_treino' => $idTreino, 'id_user' => Yii::$app->user->id]);
+            $ut->save();
+            return 'O treino ' . $treino->nome . ' foi adicionado com sucesso.';
+        }else{
+            return 'O treino ' . $treino->nome . ' já está guardado nos seus treinos.';
+        }
     }
 
     /**
@@ -292,4 +332,26 @@ class SiteController extends Controller
         ]);
 
     }
+
+    public function actionMeustreinos()
+    {
+        $user = User::findIdentity(Yii::$app->user->id);
+        $treinos = $user->treinos;
+        $searchModel = new UserTreinoSearch();
+        $searchModel->load(Yii::$app->request->post());
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        $categorias = Categoria::find()->orderBy('nome')->all();
+        $dificuldades = Dificuldade::find()->orderBy('dificuldade')->all();
+
+        return $this->render('meustreinos', [
+            'categorias' => $categorias,
+            'dificuldades' => $dificuldades,
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'treinos' => $treinos,
+
+        ]);
+    }
+
 }

@@ -4,6 +4,7 @@ use common\models\Categoria;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 
@@ -61,8 +62,14 @@ $this->title = 'GymPlan';
                                 </p>
                             </div>
                         </div>
-                        <div style="text-align: right">
-                            <?= Html::submitButton('Visualizar Exercicios', ['class' => 'btn btn-success', 'style' => 'background-color: #9BC1BC1; color:#000000']); ?>
+                        <br>
+                        <div class="row">
+                            <div class="pull-left" style="padding-left: 20px">
+                                <button id="adicionarTreino" data-id="<?=$treinos[$i]->id_treino?>" name='adicionarTreino' class="adicionarTreino" style= 'border: none;background-position: center center;width:40px; height:40px; background:url(<?= Url::to('@web/images/plus.png')?>);background-repeat: no-repeat;' type="button"></button>
+                            </div>
+                            <div class="pull-right" style="padding-right: 20px">
+                                <?= Html::submitButton('Visualizar Treino', ['name' => 'visualizarTreino','class' => 'btn btn-success', 'style' => 'background-color: #9BC1BC1; color:#000000']); ?>
+                            </div>
                         </div>
                     </div>
                 </div>

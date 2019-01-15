@@ -77,6 +77,14 @@ CREATE TABLE if not exists treino_exercicio(
 	FOREIGN Key (id_treino) REFERENCES treino(id_treino)
 ); SET default_storage_engine=InnoDB;
 
+CREATE TABLE if not exists user_treino(
+	id int(7) NOT NULL PRIMARY KEY auto_increment,
+	id_user int(5) NOT NULL,
+  id_treino int(5) NOT NULL,
+	FOREIGN Key (id_user) REFERENCES user(id),
+	FOREIGN Key (id_treino) REFERENCES treino(id_treino)
+); SET default_storage_engine=InnoDB;
+
 INSERT INTO `admin` (`primeiroNome`,`ultimoNome`, `email`, `auth_key`, `password_hash`, `password_reset_token`, `status`, `created_at`, `updated_at`) VALUES
 ('Francisco', 'Melicias', 'melicias1999@gmail.com', '9_7mh3DStkbU7yz_JOJCyPqmeya1YrVx', '$2y$13$KtcF8cGFCQ27OfbbLQdnYuXpNYWKyLBacEfPIykEnTOBrbsIZSyWm', NULL, 10, 1521162560, 1521162560),
 ('Goncalo', 'Amaro', 'amaro@gmail.com', 'Jg4UFFbq7m6GXz62Hp2Z3xDG4I4p20zc', '$2y$13$KtcF8cGFCQ27OfbbLQdnYuXpNYWKyLBacEfPIykEnTOBrbsIZSyWm', NULL, 10, 1521163037, 1521163037);

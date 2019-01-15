@@ -59,8 +59,9 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             [['primeiroNome', 'ultimoNome', 'dataNascimento', 'altura', 'peso', 'sexo', 'email'], 'required'],
             [['dataNascimento'], 'safe'],
             ['altura', 'number', 'min' => 1.00, 'max' => 2.50],
-            ['peso', 'required'],
+            ['altura','peso', 'required'],
             ['peso', 'number' , 'min' => 25, 'max' => 300],
+            [['altura', 'peso'], 'number'],
             [['sexo'], 'integer'],
             [['primeiroNome', 'ultimoNome'], 'string', 'min' => 2,'max' => 25],
             [['email'], 'string', 'max' => 120],
@@ -255,6 +256,11 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 
     public function getDateFormat(){
         return '' . date_format(date_create($this->dataNascimento), 'd/m/Y');
+    }
+
+    public function getTreinos() {
+        return $this->hasMany(Treino::className(), ['id_treino' => 'id_treino'])
+            ->viaTable('user_treino', ['id_user' => 'id']);
     }
 
 }

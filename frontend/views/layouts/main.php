@@ -40,6 +40,7 @@ AppAsset::register($this);
         $menuItems[] = ['label' => 'Inicio', 'url' => ['index']];
     }else{
         $menuItems[] = ['label' => 'Treinos', 'url' => ['index']];
+        $menuItems[] = ['label' => 'Meus treinos', 'url' => ['meustreinos']];
     }
     $menuItems[] = ['label' => 'Sobre', 'url' => ['about']];
 
