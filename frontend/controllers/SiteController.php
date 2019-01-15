@@ -250,11 +250,12 @@ class SiteController extends Controller
     public function actionAccount(){
         $user = User::findIdentity(Yii::$app->user->id);
         if($user->load(Yii::$app->request->post())){
-            if(!$user->validate()){
+            if($user->validate()){
                 $user->save();
                 return $this->render('account', [
                     'model' => $user,
                 ]);
+
             }
         }
         return $this->render('account', [
