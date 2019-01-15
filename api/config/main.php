@@ -53,6 +53,15 @@ return [
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'exercicio'],
                 [
                     'class' => 'yii\rest\UrlRule',
+                    'controller' => 'user-treino',
+                    'extraPatterns' => [
+                        'GET treinosbyuser' => 'treinosbyuser',
+                        'POST adicionartreino' => 'adicionartreino',
+                        'POST removertreino' => 'removertreino',
+                    ]
+                ],
+                [
+                    'class' => 'yii\rest\UrlRule',
                     'controller' => 'treino',
                     'extraPatterns' => [
                         'GET exercicios' => 'exercicios',
