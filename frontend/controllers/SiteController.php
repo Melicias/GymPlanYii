@@ -345,7 +345,7 @@ class SiteController extends Controller
         $categorias = Categoria::find()->orderBy('nome')->all();
         $dificuldades = Dificuldade::find()->orderBy('dificuldade')->all();
 
-        return $this->render('meustreinos', [
+        return $this->render('meusTreinos', [
             'categorias' => $categorias,
             'dificuldades' => $dificuldades,
             'searchModel' => $searchModel,
