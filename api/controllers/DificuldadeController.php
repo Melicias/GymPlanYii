@@ -2,6 +2,7 @@
 
 namespace api\controllers;
 
+use common\models\Dificuldade;
 use yii\filters\auth\QueryParamAuth;
 use yii\rest\ActiveController;
 
@@ -19,5 +20,10 @@ class DificuldadeController extends ActiveController
             'class' => QueryParamAuth::className()
         ];
         return $behaviors;
+    }
+
+    public function actionDificuldadesordenadas(){
+        $dificuldades = Dificuldade::find()->orderBy('dificuldade')->all();
+        return $dificuldades;
     }
 }

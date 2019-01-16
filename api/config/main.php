@@ -46,11 +46,23 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'categoria'],
                 '<categoria:\w+>/<id:\d+>' => '<categoria>/view',
                 //'<categoria:\w+>/<action:\w+><id:\d+>' => '<categoria>/view',
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'dificuldade'],
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'exercicio'],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'dificuldade',
+                    'extraPatterns' => [
+                        'GET dificuldadesordenadas' => 'dificuldadesordenadas',
+                    ]
+                ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'categoria',
+                    'extraPatterns' => [
+                        'GET categoriasordenadas' => 'categoriasordenadas',
+                    ]
+                ],
                 [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'user-treino',
