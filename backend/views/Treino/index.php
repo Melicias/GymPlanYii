@@ -63,7 +63,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'contentOptions'=>['style'=>'text-align:center;vertical-align: middle;']
             ],
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'contentOptions'=>['style'=>'text-align:center;vertical-align: middle;']
+            ],
         ],
     ]); ?>
 

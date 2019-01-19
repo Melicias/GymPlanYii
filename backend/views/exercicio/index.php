@@ -52,7 +52,10 @@ $this->params['breadcrumbs'][] = $this->title;
             //'tempo',
             //'id_zona',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'contentOptions'=>['style'=>'text-align:center;vertical-align: middle;']
+            ],
         ],
     ]); ?>
 </div>
