@@ -34,9 +34,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'descricao',
             'repeticoes',
             'tempo',
-            'id_zona',
             [
-                'label' => 'id_zona',
+                'label' => 'Zona do exercicio',
                 'value' => $model->getZonaName($model->id_zona),
             ],
         ],

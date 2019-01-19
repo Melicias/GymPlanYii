@@ -26,11 +26,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id_exercicio',
-            //'foto',
-            'nome',
+            [
+                'attribute'=>'id_exercicio',
+                'contentOptions'=>['style'=>'vertical-align: middle;']
+            ],
+            [
+                'attribute'=>'nome',
+                'contentOptions'=>['style'=>'text-align:center;vertical-align: middle;']
+            ],
             [
                 'attribute'=>'descricao',
                 'format'=>'raw',
@@ -43,6 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute'=>'id_zona',
                 'filter'=>ArrayHelper::map(ZonaExercicio::find()->asArray()->all(), 'id_zona', 'nome'),
                 'value' =>function($model){  return Exercicio::getZonaName($model->id_zona);},
+                'contentOptions'=>['style'=>'text-align:center;vertical-align: middle;']
             ],
             //'repeticoes',
             //'tempo',
