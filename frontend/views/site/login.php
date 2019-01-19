@@ -24,8 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= $form->field($model, 'password')->passwordInput() ?>
 
             <div style="color:#999;margin:1em 0">
-                    Não tem uma conta ainda? <?= Html::a('Registe-se', ['site/signup']) ?>.
-                   <br> Esqueceu-se da <?= Html::a('senha', ['site/reset-password']) ?>?
+                    Não tem uma conta ainda? <?= Html::a('Registe-se', ['site/signup']) ?>
 
             </div>
 

@@ -141,9 +141,11 @@ class SiteController extends Controller
 
         $model = Treino::findOne(['id_treino' => $id]);
         //var_dump(Yii::$app->request->post('visualizarTreino'));
+        $userTreino = UserTreino::findOne(['id_treino' => $id,'id_user'=>Yii::$app->user->id]);
         if(!is_null( Yii::$app->request->post('visualizarTreino'))){
             return $this->render('visualizarTreino', [
-                'model' => $model
+                'model' => $model,
+                'userTreino' => $userTreino
             ]);
         }
         /*if(!is_null(Yii::$app->request->post('adicionarTreino'))){

@@ -2,6 +2,8 @@
 
 use common\models\Categoria;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
@@ -16,6 +18,11 @@ $this->title = 'GymPlan';
         <p><strong>&emsp;Categoria: </strong><?=$model->getCategoriaName($model->id_categoria);?></p>
         <p><strong>&emsp;Dificuldade: </strong><?=$model->getDificuldadeDificuldade($model->id_dificuldade);?></p>
         <p><strong>&emsp;Número de repetições: </strong><?=$model->repeticoes;?></p>
+        <?php if($userTreino != null){ ?>
+            <button id="removerTreino" title="Remover treino" data-id="<?=$model->id_treino?>" name='removerTreino' class="removerTreino2" style= 'border: none;background-position: center center; width:35px; height:40px; background:url(<?= Url::to('@web/images/rubbish-bin.png')?>);background-repeat: no-repeat;' type="button"></button>
+        <?php }else{ ?>
+            <button id="adicionarTreino" title="Adicionar treino" data-id="<?=$model->id_treino?>" name='adicionarTreino' class="adicionarTreino2" style= 'border: none;background-position: center center;width:35px; height:40px; background:url(<?= Url::to('@web/images/plus.png')?>);background-repeat: no-repeat;' type="button"></button>
+        <?php } ?>
 
     </div>
     <div class="container-fluid cards-row">
