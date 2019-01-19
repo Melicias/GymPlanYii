@@ -8,7 +8,6 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
 $this->title = 'Alterar Dados';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-account">
     <h1><?= Html::encode($this->title) ?></h1>

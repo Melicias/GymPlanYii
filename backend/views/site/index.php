@@ -9,11 +9,9 @@ $this->title = 'GymPlan Admin';
 ?>
 <div class="index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <div class="panel panel-default">
-        <div class="panel-heading">Visualizar</div>
-        <div class="panel-body">
+        <div class="panel-heading text-center">Visualizar</div>
+        <div class="panel-body text-center">
             <p>
                 <?= Html::a('Treinos', ['treino/index'], ['class' => 'btn btn-success']) ?>
                 <?= Html::a('Exercicios', ['exercicio/index'], ['class' => 'btn btn-success']) ?>
@@ -25,8 +23,8 @@ $this->title = 'GymPlan Admin';
     </div>
 
     <div class="panel panel-default">
-        <div class="panel-heading">Adicionar</div>
-        <div class="panel-body">
+        <div class="panel-heading text-center">Adicionar</div>
+        <div class="panel-body text-center">
             <p>
                 <?= Html::a('Treinos', ['treino/create'], ['class' => 'btn btn-success']) ?>
                 <?= Html::a('Exercicios', ['exercicio/create'], ['class' => 'btn btn-success']) ?>

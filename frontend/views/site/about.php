@@ -2,18 +2,21 @@
 
 /* @var $this yii\web\View */
 
-use yii\helpers\Html;
+use yii\helpers\Url;
 
 $this->title = 'Sobre';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-about" style="text-align: center">
-    <h1>Sobre o website:</h1>
+    <img src="<?= Url::to('@web/images/logotipo.png')?>" height="125" width="125">
+    <h1>Sobre o GymPlan:</h1>
 
-    <div style="text-align: center">
-        <br><b>Este WebSite é uma aplicação para pessoas que pretendam algumas indicações e
-            exercicios de ginásio com a ajuda de personal trainers que publicam treinos
-            de várias categorias,dificuldades e zonas do corpo totalmente gratuito</b>
+    <div style="text-align: left">
+        <h4><b>O que fazemos?</b></h4>
+        <h5 style="padding-left:2em">&emsp;&emsp; Nós disponibilizamos vários tipos de treinos para várias partes do corpo com uma escolha
+        de dificuldade e de categoria.</h5>
+
+        <h4><b>Aplicação movel?</b></h4>
+        <h5 style="padding-left:2em">&emsp;&emsp; Existe uma aplicação para android para download brevemente.</h5>
     </div>
 
 </div>
