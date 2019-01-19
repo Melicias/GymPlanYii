@@ -46,7 +46,7 @@ class TreinoController extends Controller
                 'actions' => [
                     'delete' => ['POST'],
                     'index' => ['GET'],
-                    'remove-exerciciotreino' => ['POST'],
+                    //'remove-exerciciotreino' => ['POST'],
                 ],
             ],
         ];
