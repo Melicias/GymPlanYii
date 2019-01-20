@@ -20,17 +20,17 @@ class CategoriaAndDificuldadeTest extends \Codeception\Test\Unit
     }
 
     // tests
-    public function testSomeFeature()
+    public function testCategoria()
     {
         $categoria = new Categoria();
 
         $categoria-> nome = 'verificacaoDe31CaracteresSeTemMaisDaErro';
         $this->assertFalse($categoria->validate(['nome']));
 
-        $categoria->nome = 'Pernas';
+        $categoria->nome = 'Perda de peso';
         $this->assertFalse($categoria->validate(['nome']));
 
-        $categoria->nome = 'Abdominal';
+        $categoria->nome = 'Cardio';
         $this->assertFalse($categoria->validate(['nome']));
 
         $categoria->nome = 'Abdominal 2';
@@ -38,6 +38,11 @@ class CategoriaAndDificuldadeTest extends \Codeception\Test\Unit
 
         $categoria->nome = '';
         $this->assertFalse($categoria->validate(['nome']));
+
+    }
+
+    public function testDificuldade()
+    {
 
         $dificuldade = new Dificuldade();
 

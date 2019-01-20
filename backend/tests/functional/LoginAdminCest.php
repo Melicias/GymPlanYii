@@ -48,7 +48,7 @@ class LoginAdminCest
     public function AdminBlocked(FunctionalTester $I)
     {
         $I->submitForm('#login-form', [
-            'AdminLoginForm[email]' => 'teste2@teste.teste',
+            'AdminLoginForm[email]' => 'adminBlock@gmail.com',
             'AdminLoginForm[password]' => 'jayson',
         ]);
 

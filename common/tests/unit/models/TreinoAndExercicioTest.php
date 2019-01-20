@@ -20,10 +20,9 @@ class TreinoAndExercicioTest extends \Codeception\Test\Unit
     }
 
     // tests
-    public function testSomeFeature()
+    public function testTreino()
     {
         $treino = new Treino();
-
 
         $treino->nome = null;
         $this->assertFalse($treino->validate(['nome']));
@@ -49,9 +48,11 @@ class TreinoAndExercicioTest extends \Codeception\Test\Unit
         $treino->repeticoes = 10;
         $this->assertTrue($treino->validate(['repeticoes']));
 
+    }
 
+    public function testExercicio()
+    {
         $exercicio = new Exercicio();
-
 
         $exercicio->nome = null;
         $this->assertFalse($exercicio->validate(['nome']));

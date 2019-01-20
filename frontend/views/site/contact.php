@@ -13,7 +13,7 @@ $this->title = 'Contact';
     <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
 
     <h1>
-       Contactos dos Personal Trainers:
+       Contactos dos Adminstradores/Treinadores:
     </h1>
 
     <div class="row">

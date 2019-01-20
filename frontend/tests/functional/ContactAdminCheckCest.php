@@ -15,10 +15,10 @@ class ContactAdminCheckCest
     //Verifica se a página existe
     public function checkContact(FunctionalTester $I)
     {
-        $I->see('Contact');
+        $I->see('Contactos');
+        $I->see('melicias1999@gmail.com');
     }
 
-    //Verifica se o admin existe
     public function seeAdmin(FunctionalTester $I)
     {
         $I->seeRecord('common\models\Admin', [
@@ -26,8 +26,6 @@ class ContactAdminCheckCest
             'ultimoNome' => 'Melicias',
             'email' => 'melicias1999@gmail.com',
         ]);
-
-        //verificar o texto escrito
 
     }
 

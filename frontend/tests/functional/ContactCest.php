@@ -14,7 +14,7 @@ class ContactCest
 
     public function seeAllAdmins(FunctionalTester $I)
     {
-        $I->see('PersonalTrainers');
+        $I->see('Treinadores');
     }
 
 }

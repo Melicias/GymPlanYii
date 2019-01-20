@@ -204,7 +204,7 @@ class SiteController extends Controller
      */
     public function actionContact()
     {
-        $admin = Admin::find()->all();
+        $admin = Admin::find()->where('status = 10')->all();
 
         return $this->render('contact', [
             'admins' => $admin,

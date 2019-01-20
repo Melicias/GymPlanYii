@@ -8,6 +8,6 @@ class AboutCest
     public function checkAbout(FunctionalTester $I)
     {
         $I->amOnRoute('site/about');
-        $I->see('About');
+        $I->see('Sobre o GymPlan');
     }
 }
