@@ -1,13 +1,15 @@
 <?php
 return [
     [
-        'username' => 'erau',
-        'auth_key' => 'tUu1qHcde0diwUol3xeI-18MuHkkprQI',
-        // password_0
-        'password_hash' => '$2y$13$nJ1WDlBaGcbCdbNC5.5l4.sgy.OMEKCqtDQOdQ2OWpgiKRWYyzzne',
-        'password_reset_token' => 'RkD_Jw0_8HEedzLk7MM-ZKEFfYR7VbMr_1392559490',
-        'created_at' => '1392559490',
-        'updated_at' => '1392559490',
-        'email' => 'sfriesen@jenkins.info',
+        'primeiroNome' => 'Francisco',
+        'ultimoNome' => 'Francisco',
+        'auth_key' => 'oKbLFHKMuOmWO80wMZ8ZvWZV68xFq4ms',
+        'password' => 'melicias',
+        'dataNascimento' => '13-12-2018',
+        'password_hash' => '$2y$13$vbbEO1C64QSYfMGB5RBI5uHHlhcXbeGopFYLPR2HW1cgZd3p6Bk06',
+        'password_reset_token' => '',
+        'created_at' => '1544699538',
+        'updated_at' => '1545059333',
+        'email' => 'melicias1999@gmail.com',
     ],
 ];

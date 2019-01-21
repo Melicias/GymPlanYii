@@ -1,0 +1,9 @@
+class_name: AcceptanceTester
+modules:
+  enabled:
+  - PhpBrowser:
+      url: "http://localhost:80"
+  - Yii2:
+      part: orm
+      entryScript: index-test.php
+      cleanup: fguzzlehttpalse

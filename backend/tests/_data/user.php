@@ -2,13 +2,16 @@
 
 return [
     [
-        'username' => 'okirlin',
-        'auth_key' => 'iwTNae9t34OmnK6l4vT4IeaTk-YWI2Rv',
-        'password_hash' => '$2y$13$CXT0Rkle1EMJ/c1l5bylL.EylfmQ39O5JlHJVFpNn618OUS1HwaIi',
-        'password_reset_token' => 't5GU9NwpuGYSfb7FEZMAxqtuz2PkEvv_' . time(),
-        'created_at' => '1391885313',
-        'updated_at' => '1391885313',
-        'email' => 'brady.renner@rutherford.com',
+        'primeiroNome' => 'Francisco',
+        'ultimoNome' => 'Francisco',
+        'auth_key' => 'oKbLFHKMuOmWO80wMZ8ZvWZV68xFq4ms',
+        'password' => 'melicias',
+        'dataNascimento' => '13-12-2018',
+        'password_hash' => '$2y$13$vbbEO1C64QSYfMGB5RBI5uHHlhcXbeGopFYLPR2HW1cgZd3p6Bk06',
+        'password_reset_token' => '',
+        'created_at' => '1544699538',
+        'updated_at' => '1545059333',
+        'email' => 'melicias1999@gmail.com',
     ],
 
 ];
