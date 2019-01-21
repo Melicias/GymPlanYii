@@ -1,6 +1,8 @@
 <?php
+namespace backend\tests\acceptance;
 
 use yii\helpers\Url;
+use backend\tests\AcceptanceTester;
 
 class AboutCest
 {
