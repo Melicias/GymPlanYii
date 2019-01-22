@@ -23,11 +23,11 @@ class AccountForm extends Model
     public function rules()
     {
         return [
-            ['primeiroNome', 'required'],
-            ['primeiroNome', 'string', 'min' => 3, 'max' => 255],
+            ['primeiroNome', 'required' ],
+            ['primeiroNome', 'string', 'min' => 3, 'max' => 60],
 
             ['ultimoNome', 'required'],
-            ['ultimoNome', 'string', 'min' => 3, 'max' => 255],
+            ['ultimoNome', 'string', 'min' => 3, 'max' => 60],
 
             ['email', 'trim'],
             ['email', 'required'],
