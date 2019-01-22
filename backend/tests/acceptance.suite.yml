@@ -5,5 +5,5 @@ modules:
       url: "http://localhost:80"
   - Yii2:
       part: orm
-      entryScript: index-test.php
+      entryScript: GymPlanYii/backend/web/index.php
       cleanup: fguzzlehttpalse
