@@ -64,7 +64,6 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             ['peso', 'number' , 'min' => 25, 'max' => 300],
             [['sexo'], 'integer'],
             [['primeiroNome', 'ultimoNome'],  'string', 'min' => 3,'max' => 25],
-
             [['email'], 'string', 'max' => 120],
             [['email'], 'unique'],
         ];

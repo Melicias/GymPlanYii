@@ -24,15 +24,15 @@ class AccountForm extends Model
     {
         return [
             ['primeiroNome', 'required' ],
-            ['primeiroNome', 'string', 'min' => 3, 'max' => 60],
+            ['primeiroNome', 'string', 'min' => 3, 'max' => 25],
 
             ['ultimoNome', 'required'],
-            ['ultimoNome', 'string', 'min' => 3, 'max' => 60],
+            ['ultimoNome', 'string', 'min' => 3, 'max' => 25],
 
             ['email', 'trim'],
             ['email', 'required'],
             ['email', 'email'],
-            ['email', 'string', 'max' => 255],
+            ['email', 'string', 'max' => 120],
             ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
 
             ['password', 'required'],
