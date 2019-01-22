@@ -2,6 +2,8 @@
 
 namespace api\controllers;
 
+use common\models\Categoria;
+use common\models\Dificuldade;
 use common\models\Treino;
 use common\models\User;
 use frontend\models\UserTreino;
@@ -25,7 +27,12 @@ class UserTreinoController extends ActiveController
     public function actionTreinosbyuser(){
         $token = Yii::$app->request->get('access-token');
         $user = User::findIdentityByAccessToken($token);
-        return $user->treinos;
+        $arr = [];
+        foreach($user->treinos as $treino){
+            $arr[] = ['treino' => $treino,'categoria' => Categoria::findOne(['id_categoria' => $treino->id_categoria]),'dificuldade' => Dificuldade::findOne(['id_dificuldade' => $treino->id_dificuldade]),'exercicios' => $treino->exercicios];
+        }
+        return $arr;
+        //return $user->treinos;
     }
 
     public function actionAdicionartreino(){
