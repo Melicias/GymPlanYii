@@ -68,6 +68,7 @@ return [
                     'controller' => 'user-treino',
                     'extraPatterns' => [
                         'GET treinosbyuser' => 'treinosbyuser',
+                        'GET treinosidsbyuser' => 'treinosidsbyuser',
                         'POST adicionartreino' => 'adicionartreino',
                         'POST removertreino' => 'removertreino',
                     ]

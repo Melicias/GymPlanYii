@@ -24,6 +24,17 @@ class UserTreinoController extends ActiveController
         return $behaviors;
     }
 
+    public function actionTreinosidsbyuser(){
+        $token = Yii::$app->request->get('access-token');
+        $user = User::findIdentityByAccessToken($token);
+        $arr = [];
+        foreach($user->treinos as $treino) {
+            $arr[] = [$treino->id_treino];
+        }
+        return $arr;
+        //return $user->treinos;
+    }
+
     public function actionTreinosbyuser(){
         $token = Yii::$app->request->get('access-token');
         $user = User::findIdentityByAccessToken($token);
