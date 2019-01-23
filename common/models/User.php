@@ -77,7 +77,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return [
             'id' => 'ID',
             'primeiroNome' => 'Primeiro Nome',
-            'ultimoNome' => 'Ultimo Nome',
+            'ultimoNome' => 'Último Nome',
             'dataNascimento' => 'Data Nascimento',
             'altura' => 'Altura (Metros)',
             'peso' => 'Peso (Kg)',

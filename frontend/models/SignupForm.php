@@ -80,7 +80,7 @@ class SignupForm extends Model
     {
         return [
             'primeiroNome' => 'Primeiro Nome',
-            'ultimoNome' => 'Ultimo Nome',
+            'ultimoNome' => 'Último Nome',
             'dataNascimento' => 'Data Nascimento (dd-mm-aaaa)',
             'altura' => 'Altura (Metros)',
             'peso' => 'Peso (Kg)',

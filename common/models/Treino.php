@@ -51,10 +51,10 @@ class Treino extends \yii\db\ActiveRecord
         return [
             'id_treino' => 'Id Treino',
             'nome' => 'Nome',
-            'descricao' => 'Descricao',
+            'descricao' => 'Descriçao',
             'id_categoria' => 'Categoria',
             'id_dificuldade' => 'Dificuldade',
-            'repeticoes' => 'Repeticoes',
+            'repeticoes' => 'Repetições',
         ];
     }
 
