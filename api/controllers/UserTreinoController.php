@@ -56,9 +56,9 @@ class UserTreinoController extends ActiveController
             $ut->id_treino = $idTreino;
             $ut->id_user = Yii::$app->user->id;
             $ut->save();
-            return 'sucesso';
+            return json_encode('sucesso');
         }else{
-            return 'erro';
+            return json_encode('erro');
         }
     }
 
@@ -69,10 +69,10 @@ class UserTreinoController extends ActiveController
         $idTreino = $request->get('id-treino');
         $ut = UserTreino::findOne(['id_treino' => $idTreino,'id_user'=>$user->id]);
         if($ut == null){
-            return 'erro';
+            return json_encode('erro');
         }else{
             $ut->delete();
-            return 'sucesso';
+            return json_encode('sucesso');
         }
     }
 }
