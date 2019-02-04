@@ -64,10 +64,10 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ],
     ]); ?>
-    <?=Html::submitButton('Adicionar exercicios', ['class' => 'btn btn-info']);?>
+    <?=Html::submitButton('Adicionar exercícios', ['class' => 'btn btn-info']);?>
     <?= Html::endForm();?>
 
-    <h2>Exercicios: </h2>
+    <h2>Exercícios: </h2>
     <br><br>
     <div class="container-fluid cards-row">
         <div class="row">
@@ -91,10 +91,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <p class="card-description">Tempo:<?=$model->exercicios[$i]->tempo;?> segundos</p>
                             <?php
                             }else{ ?>
-                                <p class="card-description">Repeticoes:<?=$model->exercicios[$i]->repeticoes;?></p>
+                                <p class="card-description">Repetições:<?=$model->exercicios[$i]->repeticoes;?></p>
                             <?php } ?>
                         <br>
-                        <?=Html::submitButton('Remover exercicio', ['class' => 'btn btn-danger',]);?>
+                        <?=Html::submitButton('Remover exercício', ['class' => 'btn btn-danger',]);?>
                     </div>
                 </div>
             </div>

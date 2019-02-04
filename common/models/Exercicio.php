@@ -55,13 +55,13 @@ class Exercicio extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_exercicio' => 'ID Exercicio',
+            'id_exercicio' => 'ID Exercício',
             'foto' => 'Foto (url)',
             'nome' => 'Nome',
-            'descricao' => 'Descricao',
-            'repeticoes' => 'Repeticoes',
+            'descricao' => 'Descrição',
+            'repeticoes' => 'Repetições',
             'tempo' => 'Tempo (em segundos)',
-            'id_zona' => 'Zona do exercicio',
+            'id_zona' => 'Zona do exercício',
         ];
     }
 

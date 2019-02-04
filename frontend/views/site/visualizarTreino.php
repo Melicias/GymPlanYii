@@ -45,7 +45,7 @@ $this->title = 'GymPlan';
                                     <p class="card-description"><strong>Tempo: </strong><?=$model->exercicios[$i]->tempo;?> segundos</p>
                                     <?php
                                 }else{ ?>
-                                    <p class="card-description"><strong>Repeticoes: </strong><?=$model->exercicios[$i]->repeticoes;?></p>
+                                    <p class="card-description"><strong>Repetições: </strong><?=$model->exercicios[$i]->repeticoes;?></p>
                                 <?php } ?>
                                 <br>
                             </div>
