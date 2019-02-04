@@ -14,8 +14,8 @@ $this->title = 'GymPlan Admin';
         <div class="panel-body text-center">
             <p>
                 <?= Html::a('Treinos', ['treino/index'], ['class' => 'btn btn-success']) ?>
-                <?= Html::a('Exercicios', ['exercicio/index'], ['class' => 'btn btn-success']) ?>
-                <?= Html::a('Zonas exercicio', ['zona-exercicio/index'], ['class' => 'btn btn-success']) ?>
+                <?= Html::a('Exercícios', ['exercicio/index'], ['class' => 'btn btn-success']) ?>
+                <?= Html::a('Zonas exercício', ['zona-exercicio/index'], ['class' => 'btn btn-success']) ?>
                 <?= Html::a('Dificuldades', ['dificuldade/index'], ['class' => 'btn btn-success']) ?>
                 <?= Html::a('Categorias', ['categoria/index'], ['class' => 'btn btn-success']) ?>
             </p>
@@ -27,8 +27,8 @@ $this->title = 'GymPlan Admin';
         <div class="panel-body text-center">
             <p>
                 <?= Html::a('Treinos', ['treino/create'], ['class' => 'btn btn-success']) ?>
-                <?= Html::a('Exercicios', ['exercicio/create'], ['class' => 'btn btn-success']) ?>
-                <?= Html::a('Zonas exercicio', ['zona-exercicio/create'], ['class' => 'btn btn-success']) ?>
+                <?= Html::a('Exercícios', ['exercicio/create'], ['class' => 'btn btn-success']) ?>
+                <?= Html::a('Zonas exercício', ['zona-exercicio/create'], ['class' => 'btn btn-success']) ?>
                 <?= Html::a('Dificuldades', ['dificuldade/create'], ['class' => 'btn btn-success']) ?>
                 <?= Html::a('Categorias', ['categoria/create'], ['class' => 'btn btn-success']) ?>
             </p>

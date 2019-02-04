@@ -44,7 +44,7 @@ AppAsset::register($this);
         $menuItems = [
             ['label' => 'Inicio', 'url' => ['/site']],
             ['label' => 'Treinos', 'url' => ['/treino']],
-            ['label' => 'Exercicios', 'url' => ['/exercicio']],
+            ['label' => 'Exercícios', 'url' => ['/exercicio']],
             //['label' => 'Zona', 'url' => ['/zona-exercicio']],
             //['label' => 'Dificuldade', 'url' => ['/dificuldade']],
             //['label' => 'Categoria', 'url' => ['/categoria']],
