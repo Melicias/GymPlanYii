@@ -53,7 +53,7 @@ use common\models\ZonaExercicio;
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h1>Criar Categoria</h1>
+                    <h1>Criar Zona exercício</h1>
                 </div>
                 <div class="modal-body">
                     <?php $form = ActiveForm::begin([
